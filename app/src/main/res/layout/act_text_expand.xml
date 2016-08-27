@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_src"
+        android:textSize="16sp"
+        android:text="LYCdeMacBook-Pro:AndroidTest lyc$ git  stash
+Saved working directory and index state WIP on master: 8539f2f canvas操作
+HEAD is now at 8539f2f canvas操作
+LYCdeMacBook-Pro:AndroidTest lyc$
+LYCdeMacBook-Pro:AndroidTest lyc$ git  stash
+Saved working directory and index state WIP on master: 8539f2f canvas操作
+HEAD is now at 8539f2f canvas操作
+LYCdeMacBook-Pro:AndroidTest lyc$
+LYCdeMacBook-Pro:AndroidTest lyc$ git  stash
+Saved working directory and index state WIP on master: 8539f2f canvas操作
+HEAD is now at 8539f2f canvas操作
+LYCdeMacBook-Pro:AndroidTest lyc$
+LYCdeMacBook-Pro:AndroidTest lyc$ git  stash
+Saved working directory and index state WIP on master: 8539f2f canvas操作
+HEAD is now at 8539f2f canvas操作
+LYCdeMacBook-Pro:AndroidTest lyc$
+"
+        />
+
+</LinearLayout>

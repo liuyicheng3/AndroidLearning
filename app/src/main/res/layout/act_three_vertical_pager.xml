@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.lyc.study.go001.VerticalPagerView
+        android:id="@+id/verticalPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rl_bottom">
+
+        <com.lyc.study.go001.InnerTopScrollView
+            android:id="@+id/innnerScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="scroll1里的文字" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="scroll1里的文字" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="scroll1里的文字" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="scroll1里的文字" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:text="这是scrollview1里的text" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:text="这是scrollview1里的text" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:text="这是scrollview1里的text" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:text="这是scrollview1里的text" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:text="这是scrollview1里的text" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:text="这是scrollview1里的text" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:text="这是scrollview1里的text" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:text="这是scrollview1里的text" />
+
+            </LinearLayout>
+
+
+        </com.lyc.study.go001.InnerTopScrollView>
+
+        <RelativeLayout
+            android:id="@+id/rl_web"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.lyc.study.go001.InnerButtomWebView
+                android:id="@+id/innerWebView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></com.lyc.study.go001.InnerButtomWebView>
+
+            <RelativeLayout
+                android:id="@+id/rl_recommend_tip"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_alignBottom="@+id/innerWebView"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv_may_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:minWidth="160dp"
+                    android:text="continue_pull_you_may_like"
+                    android:textColor="@color/black" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="12dp"
+                    android:layout_toLeftOf="@+id/tv_may_like"
+                    android:background="@color/black"></View>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_centerVertical="true"
+
+                    android:layout_marginRight="12dp"
+                    android:layout_toRightOf="@+id/tv_may_like"
+                    android:background="@color/black"
+
+                    ></View>
+
+            </RelativeLayout>
+
+
+            <!-- <TextView
+                 android:id="@+id/tv_may_like"
+                 android:layout_width="match_parent"
+                 android:layout_height="30dp"
+                 android:layout_alignBottom="@+id/innerWebView"
+                 android:layout_centerHorizontal="true"
+                 android:background="@color/mobo_white"
+                 android:gravity="center"
+                 android:text="@string/continue_pull_you_may_like"
+                 android:textSize="18sp" />-->
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.lyc.study.go001.InnerButtomListView
+                android:id="@+id/innerListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></com.lyc.study.go001.InnerButtomListView>
+
+
+        </FrameLayout>
+
+    </com.lyc.study.go001.VerticalPagerView>
+</LinearLayout>

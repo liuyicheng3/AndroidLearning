@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.lyc.study.go004.VerticalPagerView
+        android:id="@+id/verticalPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rl_bottom">
+
+        <ImageView
+            android:id="@+id/iv_top"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#72d572" />
+        <ImageView
+            android:id="@+id/iv_middle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ff9933" />
+
+        <com.lyc.study.go004.InnerScrollView
+            android:id="@+id/innnerScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="scroll1里的文字" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="scroll1里的文字" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="scroll1里的文字" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="scroll1里的文字" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="scroll1里的文字" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:text="这是scrollview1里的text" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:text="这是scrollview1里的text" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:text="这是scrollview1里的text" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:text="这是scrollview1里的text" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:text="这是scrollview1里的text" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:text="这是scrollview1里的text" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:text="这是scrollview1里的text" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:text="这是scrollview1里的text" />
+
+
+            </LinearLayout>
+
+
+        </com.lyc.study.go004.InnerScrollView>
+
+
+    </com.lyc.study.go004.VerticalPagerView>
+</LinearLayout>

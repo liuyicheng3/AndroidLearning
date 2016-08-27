@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <com.lyc.study.go001.VerticalPagerView
+        android:id="@+id/verticalPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <com.lyc.study.go001.InnerTopScrollView
+            android:id="@+id/innnerScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/rl_detail_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/rl_detail_header"
+                    android:id="@+id/rl_detail_tip"
+                    android:visibility="gone"
+                    android:layout_height="30dp">
+
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+        </com.lyc.study.go001.InnerTopScrollView>
+
+        <RelativeLayout
+            android:id="@+id/rl_web"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.lyc.study.go001.InnerButtomWebView
+                android:id="@+id/innerWebView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="30dp" />
+
+            <TextView
+                android:id="@+id/tv_may_like"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_alignBottom="@+id/innerWebView"
+                android:layout_centerHorizontal="true"
+                android:background="#01ffe3"
+                android:gravity="center"
+                android:text="continue_pull_you_may_like"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.lyc.study.go001.InnerButtomListView
+                android:id="@+id/innerListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></com.lyc.study.go001.InnerButtomListView>
+
+            <com.lyc.study.go001.MSGView
+                android:id="@+id/msg_loading_rcm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></com.lyc.study.go001.MSGView>
+
+        </FrameLayout>
+
+    </com.lyc.study.go001.VerticalPagerView>
+
+  
+
+
+</RelativeLayout>
