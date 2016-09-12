@@ -10,33 +10,34 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.Scroller;
+import android.widget.OverScroller;
 
 import com.lyc.common.Mlog;
 
 /**
- *  Created by  lyc on 16-7-16.
+ * Created by  lyc on 16-7-16.
  */
 public class HoriScrollerView extends View implements GestureDetector.OnGestureListener {
     private Context ctx;
 
     private GestureDetectorCompat mGestureDetectorCompat;
 
-    private Scroller mScroller;
+    private OverScroller mScroller;
 
     Paint textValuePaint, textSelectPaint, valueBgPaint;
     private float mCenterTextSize = 60; //文字大小
     private int centerCircleRadius = 60;
-    private int mWidth, mHeight, mLeftBound, mRightBound;
+    private int mWidth, mHeight;
     Paint.FontMetricsInt fontMetrics;
 
     private int spacing;
-    private float mMaxOverScrollDistance; //最大 OverScroll距离
+    private int  maxOverScroll;//最大 的左右滑动边距
+    private float mLeftBound, mRightBound;
 
-    private int valueStart=1,valueEnd=12;
+    private int valueStart = 1, valueEnd = 12;
 
-    boolean isInit=false;
-    int extra=0;
+    boolean isInit = false;
+    int extra = 0;
 
     public HoriScrollerView(Context context) {
         super(context);
@@ -58,7 +59,7 @@ public class HoriScrollerView extends View implements GestureDetector.OnGestureL
         this.ctx = mContext;
 
         mGestureDetectorCompat = new GestureDetectorCompat(getContext(), this);
-        mScroller = new Scroller(getContext(), new DecelerateInterpolator(4f));
+        mScroller = new OverScroller(getContext(), new DecelerateInterpolator(4f));
 
         this.textValuePaint = new Paint();
         textValuePaint.setColor(Color.GRAY);
@@ -122,15 +123,15 @@ public class HoriScrollerView extends View implements GestureDetector.OnGestureL
         if (w != oldw || h != oldh) {
             mWidth = w;
             mHeight = h;
-            mLeftBound = 0;
-            mRightBound = 2 * mWidth;
-            mMaxOverScrollDistance = w / 4f;
             spacing = mWidth / 5;
-
-            isInit =true;
-            Mlog.e("mWidth: " + mWidth + "mHeight: " + mHeight);
+            maxOverScroll = 3 * spacing;
+            isInit = true;
+            Mlog.e("mWidth: " + mWidth + "mHeight: " + mHeight + " spacing" + spacing);
         }
     }
+
+
+    public int initLeft = 0;
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -141,41 +142,67 @@ public class HoriScrollerView extends View implements GestureDetector.OnGestureL
 
         canvas.drawCircle(mWidth / 2 + scrollerX, mHeight / 2, centerCircleRadius, valueBgPaint);
 
-
-        if (isInit){
-            isInit =false;
-            float mid =(mWidth/2)/Float.valueOf(spacing);
-            extra = (int) (spacing*((mWidth/2)/spacing+1-mid));
+        if (isInit) {
+            isInit = false;
+            float mid = (mWidth / 2) / Float.valueOf(spacing);
+            extra = (int) (spacing * ((mWidth / 2) / spacing + 1 - mid));
+            initLeft = (mWidth / 2 - extra) / spacing;
+            mLeftBound = 0;
+            mRightBound = (valueEnd - valueStart) * spacing;
+            Mlog.e("mLeftBound:" + mLeftBound + " mRightBound:" + mRightBound + " extra:" + extra + " initLeft" + initLeft);
+            mScroller.startScroll(0, 0, initLeft * spacing, 0, 1000);
+            postInvalidate();
         }
-        for (int j = valueStart; j < valueEnd; j++) {
-            int itemX=(j-valueStart) * spacing+extra;
-
-            canvas.drawText(String.valueOf(j), itemX, mHeight / 2 + Math.abs(fontMetrics.bottom - fontMetrics.top) / 2, getPaintWithDrawPosition(itemX, mWidth / 2 + scrollerX));
-//            canvas.drawText(String.valueOf(midValue + j), mWidth / 2 + j * spacing, mHeight / 2 + Math.abs(fontMetrics.bottom - fontMetrics.top) / 2, getPaintWithDrawPosition(mWidth / 2 + j * spacing, mWidth / 2 + scrollerX));
+        for (int j = valueStart; j <= valueEnd; j++) {
+            int itemX = (j - valueStart) * spacing + extra + initLeft * spacing;
+            canvas.drawText(String.valueOf(j), itemX, mHeight / 2 - (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.top, getPaintWithDrawPosition(itemX, mWidth / 2 + scrollerX));
         }
 
     }
 
 
     private Paint getPaintWithDrawPosition(int x, int currentMid) {
-        if (Math.abs(currentMid - x) < 30) {
+        if (Math.abs(currentMid - x) < centerCircleRadius / 2) {
             return textSelectPaint;
         } else {
             return textValuePaint;
         }
-
-//        return textValuePaint;
-
     }
 
 
     @Override
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
         float dis = distanceX;
+        float scrollX = getScrollX();
+        if (scrollX < mLeftBound) {
+            if (mLeftBound - scrollX > maxOverScroll) {
+                dis = 0;
+            } else {
+                if (mLeftBound - scrollX > spacing) {
+                    dis = dis / 2;
+                } else if (mLeftBound - scrollX > 2 * spacing) {
+                    dis = dis / 4;
+                } else {
+                    dis = 2 * dis / 3;
+                }
+            }
 
+        } else if (scrollX > mRightBound) {
+            if (scrollX - mRightBound > maxOverScroll) {
+                dis = 0;
+            } else {
+                if (scrollX - mRightBound > spacing) {
+                    dis = dis / 2;
+                } else if (scrollX - mRightBound > 2 * spacing) {
+                    dis = dis / 4;
+                } else {
+                    dis = 2 * dis / 3;
+                }
+            }
+
+        }
         scrollBy((int) dis, 0);
 
-        Mlog.e("onScroll"+dis);
         return true;
     }
 
@@ -183,19 +210,32 @@ public class HoriScrollerView extends View implements GestureDetector.OnGestureL
     public boolean onTouchEvent(MotionEvent event) {
         boolean ret = mGestureDetectorCompat.onTouchEvent(event);
         if (MotionEvent.ACTION_UP == event.getAction()) {
-            fixCenterPostion();
+            fixCenterPosition();
             ret = true;
         }
         return ret || super.onTouchEvent(event);
     }
 
-    private void fixCenterPostion() {
+    private void fixCenterPosition() {
         int scrollX = getScrollX();
         if (spacing != 0) {
-            int targetX = Math.round(scrollX / spacing)*spacing-scrollX;
+            if (scrollX <= mLeftBound) {
+                Mlog.e("adjust for scrollX" + scrollX + " reach mLeftBound" + mLeftBound);
+                int duration = Math.min((-scrollX) * 1200 / spacing, 1000);
 
-            mScroller.startScroll(scrollX, 0,targetX, 0,targetX*1200/spacing);
+                mScroller.startScroll(scrollX, 0, (int) (mLeftBound - scrollX), 0, duration);
 
+            } else if (scrollX <= mRightBound) {
+                Mlog.e("round" + scrollX / spacing + " scrollX" + scrollX + " spacing" + spacing);
+                int targetX = Math.round(Math.abs(scrollX) / (float) spacing) * spacing - scrollX;
+                int duration = Math.abs(targetX) * 1200 / spacing;
+                mScroller.startScroll(scrollX, 0, targetX, 0, duration);
+            } else {
+                Mlog.e("adjust for scrollX" + scrollX + " reach mRightBound" + mRightBound);
+                int duration = Math.min((int) ((scrollX - mRightBound) * 1200 / spacing), 1000);
+                mScroller.startScroll(scrollX, 0, (int) (mRightBound - scrollX), 0, duration);
+
+            }
         }
         postInvalidate();
     }
