@@ -231,26 +231,35 @@ public class HoriScrollerView extends View implements GestureDetector.OnGestureL
                 Mlog.e("adjust for scrollX" + scrollX + " reach mLeftBound" + mLeftBound);
                 int duration = Math.min((-scrollX) * 1200 / spacing, 1000);
 
-                mScroller.startScroll(scrollX, 0, (int) (mLeftBound - scrollX), 0, duration);
-                currentCenterValue = valueStart;
-
-            } else if (scrollX <= mRightBound) {
-
-                Mlog.e("round" + scrollX / spacing + " scrollX" + scrollX + " spacing" + spacing);
-
-
-                int targetX = Math.round(Math.abs(scrollX) / (float) spacing) * spacing - scrollX;
-                if (targetX ==0){
+                int targetX = (int) (mLeftBound - scrollX);
+                if (targetX==0){
                     //这是tap触发的，不需要fixcenter
                     return;
                 }
+                mScroller.startScroll(scrollX, 0, targetX, 0, duration);
+                currentCenterValue = valueStart;
+
+            } else if (scrollX <= mRightBound) {
+                Mlog.e("round" + scrollX / spacing + " scrollX" + scrollX + " spacing" + spacing);
+                int targetX = Math.round(Math.abs(scrollX) / (float) spacing) * spacing - scrollX;
+                if (targetX==0){
+                    //这是tap触发的，不需要fixcenter
+                    return;
+                }
+
                 currentCenterValue = (scrollX + targetX) / spacing + valueStart;
                 int duration = Math.abs(targetX) * 1200 / spacing;
                 mScroller.startScroll(scrollX, 0, targetX, 0, duration);
             } else {
                 Mlog.e("adjust for scrollX" + scrollX + " reach mRightBound" + mRightBound);
                 int duration = Math.min((int) ((scrollX - mRightBound) * 1200 / spacing), 1000);
-                mScroller.startScroll(scrollX, 0, (int) (mRightBound - scrollX), 0, duration);
+
+                int targetX = (int) (mRightBound - scrollX);
+                if (targetX==0){
+                    //这是tap触发的，不需要fixcenter
+                    return;
+                }
+                mScroller.startScroll(scrollX, 0, targetX, 0, duration);
                 currentCenterValue = valueEnd;
 
             }
@@ -298,14 +307,13 @@ public class HoriScrollerView extends View implements GestureDetector.OnGestureL
         if (j - Math.round(j) < 0.3) {
             int compareX = mWidth / 2 + Math.round(j) * spacing;
 //            Mlog.e("compareWith valuePosition:"+j+" valuePositionX:"+compareX);
-            if (Math.abs(downx - compareX) < 40) {
-                postInvalidate();
+            if (Math.abs(downx - compareX) < 50) {
                 UtilsManager.toast(ctx, "click " + (valueStart + Math.round(j)));
-
                 int targetScrollX = ((valueStart + Math.round(j) - currentCenterValue)) * spacing;//如果要使点击的在正中央
                 int duration = Math.min(Math.abs(targetScrollX) * 1200 / spacing, 1000);
                 currentCenterValue = valueStart + Math.round(j);
                 mScroller.startScroll(getScrollX(), 0, targetScrollX, 0, duration);
+                Mlog.e("currentCenter:" + currentCenterValue);
                 postInvalidate();
 
                 return true;
