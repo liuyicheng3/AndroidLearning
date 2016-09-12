@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Handler;
 import android.support.v4.view.GestureDetectorCompat;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
@@ -13,6 +14,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.OverScroller;
 
 import com.lyc.common.Mlog;
+import com.lyc.common.UtilsManager;
 
 /**
  * Created by  lyc on 16-7-16.
@@ -31,13 +33,15 @@ public class HoriScrollerView extends View implements GestureDetector.OnGestureL
     Paint.FontMetricsInt fontMetrics;
 
     private int spacing;
-    private int  maxOverScroll;//最大 的左右滑动边距
+    private int maxOverScroll;//最大 的左右滑动边距
     private float mLeftBound, mRightBound;
 
     private int valueStart = 1, valueEnd = 12;
 
     boolean isInit = false;
     int extra = 0;
+
+    int currentCenterValue = 0;
 
     public HoriScrollerView(Context context) {
         super(context);
@@ -80,7 +84,9 @@ public class HoriScrollerView extends View implements GestureDetector.OnGestureL
         valueBgPaint.setAntiAlias(true);
         valueBgPaint.setStyle(Paint.Style.FILL);
 
+
     }
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -151,6 +157,7 @@ public class HoriScrollerView extends View implements GestureDetector.OnGestureL
             mRightBound = (valueEnd - valueStart) * spacing;
             Mlog.e("mLeftBound:" + mLeftBound + " mRightBound:" + mRightBound + " extra:" + extra + " initLeft" + initLeft);
             mScroller.startScroll(0, 0, initLeft * spacing, 0, 1000);
+            currentCenterValue = valueStart + initLeft;
             postInvalidate();
         }
         for (int j = valueStart; j <= valueEnd; j++) {
@@ -216,6 +223,7 @@ public class HoriScrollerView extends View implements GestureDetector.OnGestureL
         return ret || super.onTouchEvent(event);
     }
 
+
     private void fixCenterPosition() {
         int scrollX = getScrollX();
         if (spacing != 0) {
@@ -224,18 +232,30 @@ public class HoriScrollerView extends View implements GestureDetector.OnGestureL
                 int duration = Math.min((-scrollX) * 1200 / spacing, 1000);
 
                 mScroller.startScroll(scrollX, 0, (int) (mLeftBound - scrollX), 0, duration);
+                currentCenterValue = valueStart;
 
             } else if (scrollX <= mRightBound) {
+
                 Mlog.e("round" + scrollX / spacing + " scrollX" + scrollX + " spacing" + spacing);
+
+
                 int targetX = Math.round(Math.abs(scrollX) / (float) spacing) * spacing - scrollX;
+                if (targetX ==0){
+                    //这是tap触发的，不需要fixcenter
+                    return;
+                }
+                currentCenterValue = (scrollX + targetX) / spacing + valueStart;
                 int duration = Math.abs(targetX) * 1200 / spacing;
                 mScroller.startScroll(scrollX, 0, targetX, 0, duration);
             } else {
                 Mlog.e("adjust for scrollX" + scrollX + " reach mRightBound" + mRightBound);
                 int duration = Math.min((int) ((scrollX - mRightBound) * 1200 / spacing), 1000);
                 mScroller.startScroll(scrollX, 0, (int) (mRightBound - scrollX), 0, duration);
+                currentCenterValue = valueEnd;
 
             }
+            Mlog.e("currentCenter:" + currentCenterValue);
+
         }
         postInvalidate();
     }
@@ -262,6 +282,35 @@ public class HoriScrollerView extends View implements GestureDetector.OnGestureL
 
     @Override
     public boolean onSingleTapUp(MotionEvent motionEvent) {
+        Mlog.e("singleTap");
+        int downx = (int) motionEvent.getX() + this.getScrollX();
+        int downy = (int) motionEvent.getY() + this.getScrollY();
+//        Mlog.e("this.getScrollX():"+this.getScrollX()+" motionEvent.getX():"+motionEvent.getX()+" downx:"+downx);
+        if (!mScroller.isFinished()) {
+            return false;
+        }
+
+        if (downx < extra + initLeft * spacing) {
+            return false;
+        }
+
+        float j = (downx - extra - initLeft * spacing) / (float) spacing;
+        if (j - Math.round(j) < 0.3) {
+            int compareX = mWidth / 2 + Math.round(j) * spacing;
+//            Mlog.e("compareWith valuePosition:"+j+" valuePositionX:"+compareX);
+            if (Math.abs(downx - compareX) < 40) {
+                postInvalidate();
+                UtilsManager.toast(ctx, "click " + (valueStart + Math.round(j)));
+
+                int targetScrollX = ((valueStart + Math.round(j) - currentCenterValue)) * spacing;//如果要使点击的在正中央
+                int duration = Math.min(Math.abs(targetScrollX) * 1200 / spacing, 1000);
+                currentCenterValue = valueStart + Math.round(j);
+                mScroller.startScroll(getScrollX(), 0, targetScrollX, 0, duration);
+                postInvalidate();
+
+                return true;
+            }
+        }
         return false;
     }
 
@@ -275,4 +324,11 @@ public class HoriScrollerView extends View implements GestureDetector.OnGestureL
     public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
         return false;
     }
+
+
+    public int getCurrentCenterPosiotion() {
+        return currentCenterValue;
+    }
+
+    Handler mHanlder = new Handler();
 }
