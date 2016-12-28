@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+   <com.lyc.study.go008.CustomViewGroup
+       android:layout_width="100dp"
+       android:layout_height="50dp"
+       android:background="@color/black"
+       android:id="@+id/vg_0"
+       ></com.lyc.study.go008.CustomViewGroup>
+
+    <com.lyc.study.go008.CustomViewGroup
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="#f00"
+        android:id="@+id/vg_1"
+        ></com.lyc.study.go008.CustomViewGroup>
+
+    <com.lyc.study.go008.CircleProgressView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:id="@+id/cpv"
+        />
+    <com.lyc.study.go008.CustomView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:id="@+id/cv"
+        />
+</LinearLayout>

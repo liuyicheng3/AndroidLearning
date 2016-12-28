@@ -67,10 +67,8 @@
         <activity android:name=".go005.GoPaintActivity" />
         <activity android:name=".go006.GoTextExpandActivity" />
         <activity android:name=".go007.GoGestureActivity" />
-
-        <activity
-            android:name=".go003.GoPhoneActivity"
-            android:label="@string/title_activity_go_phone"></activity>
+        <activity android:name=".go008.GoEventActivity" />
+        <activity android:name=".go003.GoPhoneActivity"></activity>
 
     </application>
 

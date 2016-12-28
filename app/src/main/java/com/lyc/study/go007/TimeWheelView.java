@@ -315,7 +315,6 @@ public class TimeWheelView extends View implements GestureDetector.OnGestureList
             ret = true;
         }
         return ret || super.onTouchEvent(event);
-//        return super.onTouchEvent(event);
     }
 
     @Override
