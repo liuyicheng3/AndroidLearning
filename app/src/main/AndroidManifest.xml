@@ -69,6 +69,7 @@
         <activity android:name=".go007.GoGestureActivity" />
         <activity android:name=".go008.GoEventActivity" />
         <activity android:name=".go003.GoPhoneActivity"></activity>
+        <activity android:name=".go009.GoViewTraversalActivity"></activity>
 
     </application>
 

@@ -24,6 +24,7 @@ public class CustomViewGroup extends RelativeLayout {
         super(context, attrs, defStyle);
     }
 
+
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         boolean onInte=super.onInterceptTouchEvent(ev);
