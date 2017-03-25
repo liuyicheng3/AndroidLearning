@@ -21,9 +21,16 @@ public abstract class BaseTable {
     public abstract String getName();
     public abstract HashMap<String,String> getColumnsMap();
     public abstract String getUniqueConstraint() ;
+
+    /**
+     *  最开始时候我把所有trigger  写在一起  然后execSQL  发现只有第一个trigger 创建成果了，后面几个全部眉头创建成果
+     *
+     * 然后试着 导出数据库 通过sqlite professional  调试才发现 需要一个一个trigger  单独创建才行
+     * @return
+     */
     public abstract ArrayList<String> getTrigger() ;
 
-        public abstract void upgradeTable(SQLiteDatabase db, int oldVersion, int newVersion);
+    public abstract void upgradeTable(SQLiteDatabase db, int oldVersion, int newVersion);
 
     public  void createTable(SQLiteDatabase  db){
 
