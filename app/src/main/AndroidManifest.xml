@@ -70,6 +70,7 @@
         <activity android:name=".go008.GoEventActivity" />
         <activity android:name=".go003.GoPhoneActivity"></activity>
         <activity android:name=".go009.GoViewTraversalActivity"></activity>
+        <activity android:name=".go010.GoDBActivity"></activity>
 
     </application>
 
