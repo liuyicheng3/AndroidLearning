@@ -88,7 +88,7 @@ public class MainActivity extends Activity {
 
         try {
             for (PackageInfo packageInfo : pInfos) {
-                Mlog.e("PackageInfo:" + packageInfo.packageName);
+//                Mlog.e("PackageInfo:" + packageInfo.packageName);
                 if (packageInfo.packageName.equals(getPackageName())) {
                     ActivityInfo[] activities = getPackageManager().getPackageInfo(packageInfo.packageName, PackageManager.GET_ACTIVITIES).activities;
                     if (activities != null) {
@@ -124,6 +124,18 @@ public class MainActivity extends Activity {
             this.name = name;
             this.intent = intent;
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Mlog.e("onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Mlog.e("onStop");
     }
 
     class ActivityAdapter extends BaseAdapter {
