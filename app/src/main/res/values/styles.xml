@@ -5,6 +5,15 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:background">@color/white</item>
     </style>
+    <!--文字描边-->
+    <declare-styleable name="StrokeTextView">
+        <attr name="outerColor" format="color|reference" />
+        <attr name="innnerColor" format="color|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="LeftGiftsItemLayout">
+        <attr name="left_gift_layout_index" format="integer"/>
+    </declare-styleable>
 
 
 </resources>

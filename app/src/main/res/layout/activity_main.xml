@@ -8,6 +8,13 @@
     android:background="#ffffff"
     >
 
-    />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/repeat_bg"
+        android:scaleType="matrix"
+        />
+
+
 
 </RelativeLayout>
