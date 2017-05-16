@@ -11,9 +11,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
+import android.view.animation.ScaleAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 
 import com.lyc.study.R;
@@ -23,7 +27,7 @@ import com.lyc.study.R;
  */
 
 public class GoAniActivity extends Activity {
-    private Button btn_sleep_go,btn_mult,btn_keyframe;
+    private Button btn_sleep_go,btn_mult,btn_keyframe,btn_tween;
     private View iv_target_01;
 
     @Override
@@ -88,6 +92,55 @@ public class GoAniActivity extends Activity {
                                 keyframe1,keyframe2,keyframe5);
                 ObjectAnimator.ofPropertyValuesHolder(iv_target_01,
                         propertyValuesHolder).setDuration(3000).start();
+            }
+        });
+
+        btn_tween = (Button) findViewById(R.id.btn_tween);
+        btn_tween.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TranslateAnimation ani = new TranslateAnimation(0, 200, 0, 50);
+                AlphaAnimation alphaAnimation= new AlphaAnimation(1,0f);
+                AnimationSet set =new AnimationSet(true);
+                set.addAnimation(ani);
+                set.addAnimation(alphaAnimation);
+                set.setDuration(1200);
+                set.setFillAfter(true);//不设置的话  会回到原位置
+
+
+                ScaleAnimation alphaAnimation2= new ScaleAnimation(0.0f, 1.4f, 0.0f, 1.4f);
+                alphaAnimation2.setDuration(600);
+                AnimationSet total =new AnimationSet(true);
+                total.addAnimation(set);
+                total.addAnimation(alphaAnimation2);
+                total.start();
+                total.setFillAfter(true);
+
+                total.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        AlphaAnimation alphaIn= new AlphaAnimation(0,1f);
+                        alphaIn.setDuration(600);
+                        alphaIn.setFillAfter(true);
+                        iv_target_01.startAnimation(alphaIn);
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+
+
+                iv_target_01.startAnimation(total);
+
+
             }
         });
 

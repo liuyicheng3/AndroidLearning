@@ -50,6 +50,12 @@
       android:text="btn_keyframe"
       android:id="@+id/btn_keyframe"
       />
+  <Button
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:text="btn_tween"
+      android:id="@+id/btn_tween"
+      />
   <FrameLayout
       android:layout_width="match_parent"
       android:layout_height="100dp">
