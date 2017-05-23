@@ -10,4 +10,38 @@
       android:text="hook_01"
       android:id="@+id/btn_hook"
       />
+
+  <Button
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:text="btn_proxy"
+      android:id="@+id/btn_proxy"
+      />
+
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:text=""
+      android:textSize="20dp"
+      android:textColor="@color/black"
+      android:gravity="center_vertical"
+      android:id="@+id/tv_proxy"
+      />
+
+  <Button
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:text="btn_proxy2"
+      android:id="@+id/btn_proxy2"
+      />
+
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:text=""
+      android:textSize="20dp"
+      android:textColor="@color/black"
+      android:gravity="center_vertical"
+      android:id="@+id/tv_proxy2"
+      />
 </LinearLayout>
