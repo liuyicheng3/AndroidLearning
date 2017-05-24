@@ -34,6 +34,8 @@ public class ChatRoomMessageInvocationHandler implements InvocationHandler {
         }else if (methodName.equals("getLocalExtension")){
             return storage.localExtension;
         }else {
+            //Method threw 'java.lang.ClassCastException' exception. Cannot evaluate $Proxy13.toString()
+            //这个地方偶尔会报这个错误，  估计和tostring 有关   不能反悔 null和new Object  而要返回一个确定的String 就不会出现这个错误
             return new Object();
         }
 

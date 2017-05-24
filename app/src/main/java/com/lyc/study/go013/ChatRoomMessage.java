@@ -5,7 +5,7 @@ package com.lyc.study.go013;
  */
 
 public  interface ChatRoomMessage extends IMMessage {
-    String  getChatRoomMessageExtension();
+     String  getChatRoomMessageExtension();
 
 
 }
