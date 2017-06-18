@@ -15,8 +15,8 @@ public class ApplicationManger extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        HookUtil hookUtil=new HookUtil(ProxyActivity.class, this);
+        /*HookUtil hookUtil=new HookUtil(ProxyActivity.class, this);
         hookUtil.hookSystemHandler();
-        hookUtil.hookAms();
+        hookUtil.hookAms();*/
     }
 }

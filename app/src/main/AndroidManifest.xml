@@ -76,6 +76,7 @@
         <activity android:name=".go013.GoHookActivity01"></activity>
         <activity android:name=".go013.ProxyActivity"></activity>
         <activity android:name=".go014.GoAniActivity"></activity>
+        <activity android:name=".go009.GoListViewTouchActivity"></activity>
 
     </application>
 

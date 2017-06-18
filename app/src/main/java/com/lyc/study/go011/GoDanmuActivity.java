@@ -2,11 +2,13 @@
 package com.lyc.study.go011;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -22,6 +24,7 @@ import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ImageSpan;
+import android.util.EventLog;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -29,6 +32,8 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.VideoView;
 
+import com.lyc.common.Mlog;
+import com.lyc.common.UtilsManager;
 import com.lyc.study.R;
 
 import org.json.JSONArray;
@@ -39,6 +44,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -59,6 +65,9 @@ import master.flame.danmaku.danmaku.parser.IDataSource;
 import master.flame.danmaku.danmaku.util.IOUtils;
 
 public class GoDanmuActivity extends Activity implements View.OnClickListener {
+
+    private Activity act;
+    private Context ctx;
 
     private IDanmakuView mDanmakuView;
 
@@ -84,6 +93,7 @@ public class GoDanmuActivity extends Activity implements View.OnClickListener {
 
     private Button mBtnSendDanmakus;
     private DanmakuContext mContext;
+    private Random random = new Random();
     private BaseCacheStuffer.Proxy mCacheStufferAdapter = new BaseCacheStuffer.Proxy() {
 
         private Drawable mDrawable;
@@ -138,18 +148,56 @@ public class GoDanmuActivity extends Activity implements View.OnClickListener {
      */
     private static class BackgroundCacheStuffer extends SpannedCacheStuffer {
         // 通过扩展SimpleTextCacheStuffer或SpannedCacheStuffer个性化你的弹幕样式
-        final Paint paint = new Paint();
+
 
         @Override
         public void measure(BaseDanmaku danmaku, TextPaint paint, boolean fromWorkerThread) {
             danmaku.padding = 10;  // 在背景绘制模式下增加padding
             super.measure(danmaku, paint, fromWorkerThread);
+            danmaku.paintWidth+=90;
+
         }
 
         @Override
         public void drawBackground(BaseDanmaku danmaku, Canvas canvas, float left, float top) {
-            paint.setColor(0x8125309b);
-            canvas.drawRect(left + 2, top + 2, left + danmaku.paintWidth - 2, top + danmaku.paintHeight - 2, paint);
+
+            Paint paint = new Paint();
+            Paint paintPoint = new Paint();
+
+            paint.setColor(Color.parseColor("#f1f1f1"));
+            RectF rect = new RectF(left, top+10, left + danmaku.paintWidth, top + danmaku.paintHeight-10);
+            canvas.drawRoundRect(rect, danmaku.paintHeight/2, danmaku.paintHeight/2, paint);
+            int tag=0;
+            try {
+                tag = (int) danmaku.tag;
+                if (tag ==0){
+                    paintPoint.setColor(Color.BLACK);
+                }else if (tag ==1){
+                    paintPoint.setColor(Color.RED);
+                }else {
+                    paintPoint.setColor(Color.BLUE);
+                }
+            }catch (Exception e){
+                Mlog.e("tag Exception:"+ e.toString());
+            }
+            canvas.drawCircle(20,danmaku.paintHeight/2,10,paintPoint);
+        }
+
+    /*    @Override
+        protected void drawBackground(BaseDanmaku danmaku, Canvas canvas, float left, float top) {
+            final int padding = UtilsManager.dip2px(mContext, 5);
+            if (paint == null){
+                paint = new Paint();
+            }
+            paint.setColor(mContext.getResources().getColor(R.color.color_f1f1f1));
+            RectF rect = new RectF(left, top+padding, left + danmaku.paintWidth, top + danmaku.paintHeight-padding);
+            canvas.drawRoundRect(rect, danmaku.paintHeight/2, danmaku.paintHeight/2, paint);
+            super.drawBackground(danmaku, canvas, left, top);
+        }
+*/
+        @Override
+        public void drawText(BaseDanmaku danmaku, String lineText, Canvas canvas, float left, float top, TextPaint paint, boolean fromWorkerThread) {
+            super.drawText(danmaku, lineText, canvas, left+80, top, paint, fromWorkerThread);
         }
 
         @Override
@@ -161,6 +209,8 @@ public class GoDanmuActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        act= this;
+        ctx= getApplicationContext();
         setContentView(R.layout.activity_danmu);
         findViews();
     }
@@ -212,9 +262,6 @@ public class GoDanmuActivity extends Activity implements View.OnClickListener {
         mBtnSendDanmakuTextAndImage.setOnClickListener(this);
         mBtnSendDanmakus.setOnClickListener(this);
 
-        // VideoView
-        VideoView mVideoView = (VideoView) findViewById(R.id.videoview);
-        // DanmakuView
 
         // 设置最大显示行数
         HashMap<Integer, Integer> maxLinesPair = new HashMap<Integer, Integer>();
@@ -228,8 +275,8 @@ public class GoDanmuActivity extends Activity implements View.OnClickListener {
         mDanmakuView = (IDanmakuView) findViewById(R.id.sv_danmaku);
         mContext = DanmakuContext.create();
         mContext.setDanmakuStyle(IDisplayer.DANMAKU_STYLE_STROKEN, 3).setDuplicateMergingEnabled(false).setScrollSpeedFactor(1.2f).setScaleTextSize(1.2f)
-        .setCacheStuffer(new SpannedCacheStuffer(), mCacheStufferAdapter) // 图文混排使用SpannedCacheStuffer
-//        .setCacheStuffer(new BackgroundCacheStuffer())  // 绘制背景使用BackgroundCacheStuffer
+//        .setCacheStuffer(new SpannedCacheStuffer(), mCacheStufferAdapter) // 图文混排使用SpannedCacheStuffer
+        .setCacheStuffer(new BackgroundCacheStuffer(),null) // 图文混排使用SpannedCacheStuffer
         .setMaximumLines(maxLinesPair)
         .preventOverlapping(overlappingEnablePair).setDanmakuMargin(40);
         if (mDanmakuView != null) {
@@ -283,42 +330,32 @@ public class GoDanmuActivity extends Activity implements View.OnClickListener {
             mDanmakuView.showFPS(true);
             mDanmakuView.enableDanmakuDrawingCache(true);
         }
-
-        if (mVideoView != null) {
-            mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mediaPlayer) {
-                    mediaPlayer.start();
-                }
-            });
-            mVideoView.setVideoPath(Environment.getExternalStorageDirectory() + "/1.flv");
-        }
-
-
-//        handler.sendEmptyMessageDelayed(1,800);
+        handler.sendEmptyMessageDelayed(1,800);
 
     }
 
-
+    public String[] input= new String[]{
+      "ActionUp","ActionDown","ActionMove"
+    };
 
     private Handler  handler =new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             BaseDanmaku danmaku = mContext.mDanmakuFactory.createDanmaku(BaseDanmaku.TYPE_SCROLL_RL);
-
-            danmaku.text = "AuthServiceObserver/observeOnlineStatus" + System.nanoTime();
+            int pos= Math.abs(random.nextInt())%3;
+            danmaku.text = input[pos];
+            danmaku.tag= pos;
             danmaku.padding = 5;
             danmaku.priority = 10;  // 可能会被各种过滤器过滤并隐藏显示
             danmaku.isLive = true;
             danmaku.setTime(mDanmakuView.getCurrentTime() + 500);
             danmaku.textSize = 100f ;
             danmaku.textColor = Color.RED;
-            danmaku.textShadowColor = Color.BLUE;
-            danmaku.underlineColor = Color.GREEN;
-            danmaku.borderColor = Color.GREEN;
+//            danmaku.textShadowColor = Color.BLUE;
+//            danmaku.underlineColor = Color.GREEN;
+//            danmaku.borderColor = Color.GREEN;
             mDanmakuView.addDanmaku(danmaku);
-//            UtilsManager.toast(rootView.getContext(),"收到消息");
             handler.sendEmptyMessageDelayed(1,1300);
 
         }
@@ -424,7 +461,7 @@ public class GoDanmuActivity extends Activity implements View.OnClickListener {
         }
         // for(int i=0;i<100;i++){
         // }
-        danmaku.text = "Executing tasks: [:app:assembleDebug]" + System.nanoTime();
+        danmaku.text = "New Add" + System.nanoTime();
         danmaku.padding = 5;
         danmaku.priority = 10;  // 可能会被各种过滤器过滤并隐藏显示
         danmaku.isLive = islive;

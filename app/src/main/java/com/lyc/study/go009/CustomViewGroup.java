@@ -1,7 +1,10 @@
 package com.lyc.study.go009;
 
 import android.content.Context;
+import android.support.annotation.IntDef;
 import android.util.AttributeSet;
+import android.util.EventLog;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -48,5 +51,9 @@ public class CustomViewGroup extends FrameLayout {
         int height=MeasureSpec.getSize(heightMeasureSpec);
         Mlog.e("onMeasure>>"+"width:"+width+" height:"+height);    }
 
-
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        Mlog.e("onInterceptTouchEvent");
+        return super.onInterceptTouchEvent(ev);
+    }
 }

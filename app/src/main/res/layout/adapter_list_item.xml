@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="400dp"
+    android:layout_height="100dp"
+    android:background="@color/black"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.lyc.study.go009.SonViewGroup
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:background="@color/colorAccent"
+        android:id="@+id/parent"
+
+        >
+
+        <com.lyc.study.go009.GrandSonView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimaryDark"
+            android:id="@+id/son"
+            ></com.lyc.study.go009.GrandSonView>
+    </com.lyc.study.go009.SonViewGroup>
+
+    <View
+        android:id="@+id/btn_inner"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        />
+</FrameLayout>
