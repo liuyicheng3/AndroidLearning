@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/fl_normal"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/tv_origin"
+            />
+
+    </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/ll_thread"
+        android:orientation="vertical"
+        ></LinearLayout>
+
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="add"
+        />
+    <Button
+        android:id="@+id/btn_del"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="delete"
+        />
+</LinearLayout>
