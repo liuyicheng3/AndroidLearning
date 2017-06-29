@@ -78,6 +78,7 @@
         <activity android:name=".go014.GoAniActivity"></activity>
         <activity android:name=".go009.GoListViewTouchActivity"></activity>
         <activity android:name=".go015.GoViewThreadActivity"></activity>
+        <activity android:name=".go016.GoRecycleViewActivity"></activity>
 
     </application>
 
