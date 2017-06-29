@@ -140,13 +140,14 @@ public class GoRecycleViewActivity  extends Activity implements View.OnClickList
 
     public  class MyViewHolder extends RecyclerView.ViewHolder{
         private TextView tv_origin_index,tv_origin_content;
-        private Button btn_check;
+        private Button btn_check,btn_insert;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             tv_origin_index = (TextView) itemView.findViewById(R.id.tv_origin_index);
             tv_origin_content = (TextView) itemView.findViewById(R.id.tv_origin_content);
             btn_check = (Button) itemView.findViewById(R.id.btn_check);
+            btn_insert = (Button) itemView.findViewById(R.id.btn_insert);
 
         }
 
@@ -162,6 +163,22 @@ public class GoRecycleViewActivity  extends Activity implements View.OnClickList
                     sb.append("originPosition"+item.originPos);
                     CustomDialog infoDialog= new CustomDialog(GoRecycleViewActivity.this);
                     infoDialog.show(sb.toString());
+                }
+            });
+
+            btn_insert.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int targetPos=getLayoutPosition()+1;
+                    Data item= new Data();
+                    item.originPos=targetPos;
+                    item.content=getChineseName();
+                    if (targetPos>dataArr.size()-1){
+                        dataArr.add(item);
+                    }else {
+                        dataArr.add(targetPos,item);
+                    }
+                    adapter.notifyItemInserted(targetPos);
                 }
             });
 
