@@ -79,6 +79,10 @@
         <activity android:name=".go009.GoListViewTouchActivity"></activity>
         <activity android:name=".go015.GoViewThreadActivity"></activity>
         <activity android:name=".go016.GoRecycleViewActivity"></activity>
+        <activity android:name=".go017.GoIOActvity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            ></activity>
 
     </application>
 

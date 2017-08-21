@@ -16,7 +16,7 @@
     </FrameLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="210dp"
         android:id="@+id/ll_thread"
         android:orientation="vertical"
         ></LinearLayout>
@@ -33,4 +33,25 @@
         android:layout_height="50dp"
         android:text="delete"
         />
+
+
+    <Button
+        android:id="@+id/bt"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="add block"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/edit_text"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
 </LinearLayout>

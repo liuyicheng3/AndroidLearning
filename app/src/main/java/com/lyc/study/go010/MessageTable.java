@@ -121,6 +121,8 @@ public class MessageTable extends BaseTable {
     }
 
     public static Cursor read(SQLiteDatabase  db){
+        //这个time可以当string传递到selectionArgs里里面
+//        return db.query(table_name, ALL_Columns,Columns.column_time+"=?",new String[]{"1500805852963"},null,null,null);
         return db.query(table_name, ALL_Columns,null,null,null,null,null);
     }
 

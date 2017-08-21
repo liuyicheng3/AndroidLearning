@@ -151,7 +151,7 @@ public class GoRecycleViewActivity  extends Activity implements View.OnClickList
 
         }
 
-        public void initData(Data item){
+        public void initData(final Data item){
             tv_origin_index.setText(String.valueOf(item.originPos));
             tv_origin_content.setText(item.content);
             btn_check.setOnClickListener(new View.OnClickListener() {
