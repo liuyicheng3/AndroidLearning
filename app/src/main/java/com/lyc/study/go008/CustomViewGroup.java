@@ -24,6 +24,12 @@ public class CustomViewGroup extends RelativeLayout {
         super(context, attrs, defStyle);
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        Mlog.e("dispatchTouchEvent");
+        return super.dispatchTouchEvent(event);
+    }
+
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {

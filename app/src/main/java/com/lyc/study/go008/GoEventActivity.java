@@ -15,7 +15,7 @@ import com.lyc.study.R;
 
 public class GoEventActivity  extends Activity {
 
-    private View vg_0,vg_1;
+    private View vg_0,vg_1,cv;
 
     private CircleProgressView  cpv;
     @Override
@@ -27,8 +27,18 @@ public class GoEventActivity  extends Activity {
     }
 
     private void initView() {
-        vg_1= findViewById(R.id.vg_1);
+        vg_0= findViewById(R.id.vg_0);
 
+
+
+        vg_1= findViewById(R.id.vg_1);
+        cv = findViewById(R.id.cv);
+        cv.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
         /*vg_1.setOnClickListener(new View.OnClickListener() {
 
             @Override

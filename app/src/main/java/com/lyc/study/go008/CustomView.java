@@ -2,6 +2,7 @@ package com.lyc.study.go008;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.lyc.common.Mlog;
@@ -39,6 +40,20 @@ public class CustomView extends View {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
         Mlog.e("on onLayout ");
+    }
+
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        Mlog.e("dispatchTouchEvent");
+        return super.dispatchTouchEvent(event);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        boolean onTouch=super.onTouchEvent(event);
+        Mlog.e("onTouch"+onTouch);
+        return onTouch;
 
     }
 }
