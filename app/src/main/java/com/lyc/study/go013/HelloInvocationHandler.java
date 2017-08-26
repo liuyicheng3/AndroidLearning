@@ -32,7 +32,9 @@ public class HelloInvocationHandler implements InvocationHandler {
         // 后置的业务逻辑操作
         Mlog.e("---结束");
         if (method.getName().equalsIgnoreCase("hello")){
-            return "21312";
+            return "call IHello.hello";
+        }else if (method.getName().equalsIgnoreCase("hello2")){
+            return 1;
         }else {
             return null;
         }

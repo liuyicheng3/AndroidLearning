@@ -23,6 +23,7 @@ public class ChatRoomStorageBean implements Serializable {
     public Map<String, Object> localExtension;
 
     public String attach;
+    public String superInfo ="superInfo";
 
 //    public  void
 

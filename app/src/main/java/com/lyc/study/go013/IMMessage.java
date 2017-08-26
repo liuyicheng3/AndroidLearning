@@ -8,7 +8,7 @@ import java.util.Map;
  */
 
 
-public interface IMMessage extends Serializable {
+public interface IMMessage extends IMMessageSuper  {
     String getUuid();
 
     boolean isTheSame(IMMessage var1);
