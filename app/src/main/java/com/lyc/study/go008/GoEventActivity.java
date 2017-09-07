@@ -28,6 +28,7 @@ public class GoEventActivity  extends Activity {
 
     private void initView() {
         vg_0= findViewById(R.id.vg_0);
+        vg_0.invalidate();
 
 
 
