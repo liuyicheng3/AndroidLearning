@@ -84,6 +84,8 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             ></activity>
         <activity android:name=".go018.GoFileDownLoadActivity"></activity>
+        <activity android:name=".go019.GoRobolectricAct"></activity>
+        <activity android:name=".go019.RobolectricSecondActivity"></activity>
 
 
     </application>
