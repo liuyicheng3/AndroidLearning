@@ -27,6 +27,11 @@ import static org.powermock.api.mockito.PowerMockito.when;
  * 如果只是使用PowerMock  就需要把Robolectric 那一套都去掉，还要去掉 @Rule
  *
  *
+ * 如果只有一个 PrepareForTest 就这么写 @PrepareForTest(StaticUtils.class)
+ *
+ * 其实这个注解也可以写到方法前，但是会导致单独运行每一个测试都失败（包括不涉及到需要PrepareForTest的），错误如下：
+ * java.lang.Exception: No tests found matching Method
+ *
  *
  * Created by lyc
  * on 16/7/20.
@@ -53,7 +58,7 @@ public class PowerMockUtilTest {
 
 
     @Test
-    @PrepareForTest(StaticUtils.class)
+    @PrepareForTest({StaticUtils.class,PowerMockTarget.class})
     public void testPartialMock() throws Exception {
         mockStatic(StaticUtils.class);
         spy(StaticUtils.class);
@@ -62,7 +67,6 @@ public class PowerMockUtilTest {
     }
 
     @Test
-    @PrepareForTest(StaticUtils.class)
     public void testPartialMock2() throws Exception {
         mockStatic(StaticUtils.class);
         spy(StaticUtils.class);
@@ -71,7 +75,6 @@ public class PowerMockUtilTest {
     }
 
     @Test
-    @PrepareForTest(StaticUtils.class)
     public void testCancelMock() throws Exception {
         mockStatic(StaticUtils.class);
         spy(StaticUtils.class);
@@ -81,7 +84,6 @@ public class PowerMockUtilTest {
     }
 
     @Test
-    @PrepareForTest(PowerMockTarget.class)
     public void testCallInternalInstance() throws Exception {
         File file = PowerMockito.mock(File.class);
         PowerMockTarget underTest = new PowerMockTarget();
