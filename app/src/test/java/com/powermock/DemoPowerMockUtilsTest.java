@@ -1,6 +1,7 @@
 package com.powermock;
 
 import com.lyc.study.BuildConfig;
+import com.lyc.study.go019.StaticUtils;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -32,11 +33,11 @@ import static org.powermock.api.mockito.PowerMockito.when;
  * PowerMock 使用 demo
  *
  *
- * Created by ring
+ * Created by lyc
  * on 16/7/20.
  */
 @RunWith(RobolectricGradleTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 21, application = TestApplicationManager.class)
+@Config(constants = BuildConfig.class, sdk = 21,manifest="app/src/main/AndroidManifest.xml", application = TestApplicationManager.class)
 @PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*"})
 @PrepareForTest(StaticUtils.class)
 public class DemoPowerMockUtilsTest {

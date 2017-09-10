@@ -1,4 +1,4 @@
-package com.powermock;
+package com.lyc.study.go019;
 
 /**
  * Created by ring
@@ -27,5 +27,11 @@ public class StaticUtils {
         System.out.println("called");
 
         return "StaticUtils.test3";
+    }
+
+    public static String test4(Exception e) {
+        System.out.println("called");
+
+        return "StaticUtils.test4";
     }
 }
