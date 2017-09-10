@@ -37,6 +37,7 @@ import static org.powermock.api.mockito.PowerMockito.when;
  * on 16/7/20.
  */
 @RunWith(PowerMockRunner.class)
+@PrepareForTest({StaticUtils.class,PowerMockTarget.class})
 public class PowerMockUtilTest {
 //    @Rule
 //    public PowerMockRule rule = new PowerMockRule();
@@ -58,7 +59,6 @@ public class PowerMockUtilTest {
 
 
     @Test
-    @PrepareForTest({StaticUtils.class,PowerMockTarget.class})
     public void testPartialMock() throws Exception {
         mockStatic(StaticUtils.class);
         spy(StaticUtils.class);
