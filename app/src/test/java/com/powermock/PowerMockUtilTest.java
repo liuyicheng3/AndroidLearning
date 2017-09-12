@@ -1,7 +1,9 @@
 package com.powermock;
 
+import com.lyc.study.go019.Animal;
 import com.lyc.study.go019.PowerMockTarget;
 import com.lyc.study.go019.StaticUtils;
+import com.lyc.study.go019.StaticUtilsFake;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.reflect.Whitebox;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,6 +29,8 @@ import static org.powermock.api.mockito.PowerMockito.verifyNew;
 import static org.powermock.api.mockito.PowerMockito.verifyPrivate;
 import static org.powermock.api.mockito.PowerMockito.when;
 import static org.powermock.api.mockito.PowerMockito.whenNew;
+import static org.powermock.api.support.membermodification.MemberMatcher.method;
+import static org.powermock.api.support.membermodification.MemberModifier.replace;
 
 /**
  * PowerMock 使用 demo
@@ -139,4 +144,29 @@ public class PowerMockUtilTest {
         // Optionally verify that the private method was actually called
         verifyPrivate(underTest).invoke(nameOfMethodToMock, input);
     }
+
+
+    @Test
+    public void demoFieldMocking() throws Exception {
+        final String expected = "i am mocked field";
+        //这个就是简单的反射不需要 设置 PrepareForTest
+        Whitebox.setInternalState(StaticUtils.class,"instance",expected);
+        StaticUtils.test5();
+        assertEquals(StaticUtils.test5(),expected);
+    }
+
+    @Test
+    public void demoReplaceMocking() throws Exception {
+        replace(method(StaticUtils.class,"test5")).with(method(StaticUtilsFake.class,"fakeTest5"));
+        assertEquals(StaticUtils.test5(),StaticUtilsFake.fakeTest5());
+    }
+
+    @Test
+    public void demoMockNew() throws Exception {
+        Animal fake  = new Animal("god");
+        PowerMockito.whenNew(Animal.class).withNoArguments().thenReturn(fake);
+        assertEquals(StaticUtils.test6(),fake);
+    }
+
+
 }
