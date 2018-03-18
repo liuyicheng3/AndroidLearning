@@ -86,6 +86,18 @@
         <activity android:name=".go018.GoFileDownLoadActivity"></activity>
         <activity android:name=".go019.GoRobolectricAct"></activity>
         <activity android:name=".go019.RobolectricSecondActivity"></activity>
+        <activity android:name=".go001.GoDragHelperActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            >
+        </activity>
+        <activity android:name=".go020.GoCalMd5Activity"></activity>
+
+        <activity android:name=".basic.GoBasicActivity"></activity>
+        <activity android:name=".go021.GoAnnotationActivity"></activity>
+
+        <service android:name=".basic.ServiceA"></service>
+        <service android:name=".basic.ServiceB"></service>
 
 
     </application>

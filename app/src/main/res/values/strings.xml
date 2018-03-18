@@ -2,6 +2,7 @@
     <string name="app_name">に勉强する</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_go_phone">GoPhoneActivity</string>
+    <string name="marquee_texts">心中有阳光，脚底有力量。心中有阳光，脚底有力量。心中有阳光，脚底有力量。心中有阳光，脚底有力量。</string>
     <array name="day_text">
 
         <item> 清早</item>

@@ -67,4 +67,22 @@ public class GoEventActivity  extends Activity {
         cpv = (CircleProgressView) findViewById(R.id.cpv);
         cpv.setProgress(10);
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Mlog.e("onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Mlog.e("onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Mlog.e("onDestroy");
+    }
 }

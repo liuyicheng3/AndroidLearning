@@ -4,10 +4,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+  <WebView
+      android:id="@+id/wv"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"></WebView>
   <Button
       android:layout_width="match_parent"
       android:layout_height="50dp"
       android:text="启动下载"
       android:id="@+id/btn_start"
       />
+
+
 </LinearLayout>

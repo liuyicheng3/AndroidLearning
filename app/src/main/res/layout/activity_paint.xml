@@ -4,13 +4,15 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <com.lyc.study.go005.RoundImageView
+        android:id="@+id/roundImageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/demo_lulu01"
         app:borderRadius="30dp"
-        app:type="round"
-        />
+        app:type="round" />
+
     <com.lyc.study.go005.RoundImageViewByXfermode
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -18,7 +20,7 @@
         app:borderRadius="30dp"
         app:type="round"
         />
-    <com.lyc.study.go005.CircleImageView01
+    <com.lyc.study.go005.XfermodeView
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:id="@+id/iv_circle1"

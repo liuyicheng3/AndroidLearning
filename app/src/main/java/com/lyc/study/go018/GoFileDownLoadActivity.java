@@ -2,11 +2,17 @@ package com.lyc.study.go018;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.webkit.URLUtil;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 
 import com.liulishuo.filedownloader.BaseDownloadTask;
@@ -87,5 +93,42 @@ public class GoFileDownLoadActivity  extends Activity{
                 task.start();
             }
         });
+
+        WebView  wv= (WebView) findViewById(R.id.wv);
+        wv.setWebChromeClient(new WebChromeClient(){
+
+        });
+
+        wv.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                Mlog.e("shouldOverrideUrlLoading:"+url);
+                return super.shouldOverrideUrlLoading(view, url);
+
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                Mlog.e("onPageStarted:"+url);
+                super.onPageStarted(view, url, favicon);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                Mlog.e("onPageFinished:"+url);
+                super.onPageFinished(view, url);
+            }
+        });
+        WebSettings settings = wv.getSettings();
+
+        settings.setJavaScriptEnabled(true);
+        settings.setJavaScriptCanOpenWindowsAutomatically(true);
+//        wv.loadUrl("https://developer.android.com/guide/webapps/migrating.html#URLs");
+//        wv.loadUrl("http://192.168.10.188:8090/#/index");
+        wv.loadUrl(page1);
     }
+
+    String page1="http://www.niubichat.com/university/index.html#/";
+    String page2="http://www.niubichat.com/university/index.html#/rule";
+
 }

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+  <Button
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:text="StartServiceA"
+      android:id="@+id/btn_startA"
+      tools:tag=""
+      />
+
+  <Button
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:text="StopServiceA"
+      android:id="@+id/btn_stopA"
+      tools:tag=""
+      />
+
+  <Button
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:text="BindServiceA"
+      android:id="@+id/btn_bindA"
+      tools:tag=""
+      />
+
+  <Button
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:text="UnbindServiceA"
+      android:id="@+id/btn_unbindA"
+      tools:tag=""
+      />
+
+  <CheckBox
+      android:layout_width="100dp"
+      android:layout_height="30dp"
+      android:id="@+id/tv_a"
+      android:text="TextA"
+      android:textSize="15dp"
+      android:gravity="center"
+      android:textColor="@drawable/text_selector"
+      android:button="@null"
+      android:checked="true"
+      />
+
+  <TextView
+      android:layout_width="100dp"
+      android:layout_height="30dp"
+      android:id="@+id/tv_b"
+      android:text="TextB"
+      android:textSize="15dp"
+      android:gravity="center"
+      android:textColor="@drawable/text_selector"
+      />
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      >
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:id="@+id/btn_replace_1"
+        android:text="replace_1"
+        />
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:id="@+id/btn_replace_2"
+        android:text="replace_2"
+        />
+  </LinearLayout>
+
+  <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="100dp"
+      android:id="@+id/fl_container"
+      ></FrameLayout>
+
+
+
+</LinearLayout>

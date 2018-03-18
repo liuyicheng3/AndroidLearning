@@ -26,6 +26,8 @@ import android.widget.TextView;
 import com.lyc.common.Mlog;
 import com.lyc.common.UtilsManager;
 
+import org.json.JSONObject;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -86,6 +88,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         setTranslucentStatus();
         super.onCreate(savedInstanceState);
+
 
         act = this;
         ctx = getApplicationContext();
