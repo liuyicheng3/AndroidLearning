@@ -2,6 +2,7 @@ package com.lyc.study.go009;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -52,5 +53,26 @@ public class SonViewGroup extends FrameLayout {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
         Mlog.e("onLayout");
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        boolean result = super.onInterceptTouchEvent(ev);
+        Mlog.e(String.valueOf(result));
+        return result;
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        boolean result = super.dispatchTouchEvent(ev);
+        Mlog.e(String.valueOf(result));
+        return result;
+    }
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        boolean onTouch=super.onTouchEvent(event);
+        Mlog.e(String.valueOf(onTouch));
+        return onTouch;
+
     }
 }

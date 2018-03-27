@@ -53,7 +53,23 @@ public class CustomViewGroup extends FrameLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Mlog.e("onInterceptTouchEvent");
-        return super.onInterceptTouchEvent(ev);
+        boolean result = super.onInterceptTouchEvent(ev);
+        Mlog.e(String.valueOf(result));
+        return result;
     }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        boolean result = super.dispatchTouchEvent(ev);
+        Mlog.e(String.valueOf(result));
+        return result;
+    }
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        boolean onTouch=super.onTouchEvent(event);
+        Mlog.e(String.valueOf(onTouch));
+        return onTouch;
+
+    }
+
 }

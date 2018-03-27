@@ -47,13 +47,13 @@ public class GoViewTraversalActivity extends Activity {
         });
 
         vg_son= findViewById(R.id.vg_son);
-       /* vg_son.setOnClickListener(new View.OnClickListener() {
+        vg_son.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Mlog.e("vg_son onClick");
                 UtilsManager.toast(GoViewTraversalActivity.this,"son click");
             }
-        });*/
+        });
         vg_inner= findViewById(R.id.vg_inner);
 
     }

@@ -151,7 +151,7 @@ public class GoAniActivity extends Activity {
         GiftFrameLayout giftFrameLayout1 = (GiftFrameLayout) findViewById(R.id.gift_layout1);
         GiftFrameLayout giftFrameLayout2 = (GiftFrameLayout) findViewById(R.id.gift_layout2);
 
-        GiftControl giftControl = new GiftControl(giftFrameLayout1, giftFrameLayout2);
+        final GiftControl giftControl = new GiftControl(giftFrameLayout1, giftFrameLayout2);
 
         findViewById(R.id.btn_gift).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -34,12 +34,6 @@ public class GoEventActivity  extends Activity {
 
         vg_1= findViewById(R.id.vg_1);
         cv = findViewById(R.id.cv);
-        cv.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
         /*vg_1.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -48,20 +42,26 @@ public class GoEventActivity  extends Activity {
                 Mlog.e("click");
             }
         });*/
-        vg_1.setOnTouchListener(new View.OnTouchListener() {
+        vg_0.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction()==MotionEvent.ACTION_UP)
-                    Mlog.e("click");
-                    return false;
-
+            public void onClick(View v) {
+                Mlog.e("trigger");
+                UtilsManager.toast(GoEventActivity.this,"trigger");
             }
         });
 
-        vg_1.setOnTouchListener((view, motionEvent) -> {
+        /*vg_1.setOnTouchListener((view, motionEvent) -> {
             if (motionEvent.getAction()==MotionEvent.ACTION_UP)
                 Mlog.e("click");
             return false;
+        });*/
+        vg_1.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction()==MotionEvent.ACTION_UP)
+                    Mlog.e("click");
+                return false;
+            }
         });
 
         cpv = (CircleProgressView) findViewById(R.id.cpv);

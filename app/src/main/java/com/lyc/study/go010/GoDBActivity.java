@@ -112,7 +112,7 @@ public class GoDBActivity  extends Activity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            Holder  holder;
+            final Holder  holder;
             if (convertView ==null){
                 convertView = LayoutInflater.from(act).inflate(R.layout.adpater_view_db,null);
                 holder=new Holder();

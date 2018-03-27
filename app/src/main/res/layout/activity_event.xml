@@ -16,7 +16,20 @@
            android:id="@+id/cv"
            android:background="#ff1"
            />
-
+    <com.lyc.study.go008.CustomViewGroup
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="#0f1"
+        android:layout_marginLeft="60dp"
+        android:id="@+id/vg_2"
+        ></com.lyc.study.go008.CustomViewGroup>
+       <TextView
+           android:layout_width="50dp"
+           android:layout_height="50dp"
+           android:id="@+id/tv_3"
+           android:layout_marginLeft="120dp"
+           android:background="#fff"
+           />
 
    </com.lyc.study.go008.CustomViewGroup>
 

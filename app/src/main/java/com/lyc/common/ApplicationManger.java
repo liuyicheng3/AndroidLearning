@@ -25,8 +25,8 @@ public class ApplicationManger extends Application {
         FileDownloader.setupOnApplicationOnCreate(this)
                 .connectionCreator(new FileDownloadUrlConnection
                         .Creator(new FileDownloadUrlConnection.Configuration()
-                        .connectTimeout(15_000) // set connection timeout.
-                        .readTimeout(15_000) // set read timeout.
+                        .connectTimeout(150000) // set connection timeout.
+                        .readTimeout(150000) // set read timeout.
                         .proxy(Proxy.NO_PROXY) // set proxy
                 ))
                 .commit();
