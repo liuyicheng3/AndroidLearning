@@ -25,6 +25,10 @@ import com.lyc.study.R;
 
 /**
  * Created by lyc on 18/4/4.
+ *
+ * 讲AIDL binder 原理很好的文章https://blog.csdn.net/xiangzhihong8/article/details/79935473
+ *https://www.jianshu.com/p/1eff5a13000d
+ * 一定要格式化{@link IaidlData}这个类看源码
  */
 
 public class GoRemoteActivity extends BaseActivity implements View.OnClickListener {
@@ -74,11 +78,43 @@ public class GoRemoteActivity extends BaseActivity implements View.OnClickListen
         }
     };
 
+    private IBinder.DeathRecipient mDeathRecipient = new IBinder.DeathRecipient() {
+        @Override
+        public void binderDied() {
+            if (aidlInterface==null){
+                return;
+            }
+            //远程服务意外关闭了
+            aidlInterface.asBinder().unlinkToDeath(mDeathRecipient,0);
+            aidlInterface  = null;
+            // TODO: 18/4/14 这里需要重新绑定远程服务
+
+        }
+    };
+
     private ServiceConnection mSecondaryConnection = new ServiceConnection()
     {
+        /**
+         *一定要格式化{@link IaidlData}这个类看源码
+         *
+         * @param className
+         * @param service  他就是RemoteService2里面new的binder 对象，这个binder里面通过
+         *                 this.attachInterface(this, DESCRIPTOR)  注册了这个binder
+         */
         public void onServiceConnected(ComponentName className, IBinder service)
         {
+            /**
+             *这个地方是通过
+             * com.lyc.study.go022.IaidlData.Stub#asInterface(android.os.IBinder) 查询注册的binder对象的
+             *
+             * android.os.IInterface iin = obj.queryLocalInterface(DESCRIPTOR);
+             * 这里的obj 是binder对象
+             *
+             * 这里拿到的不是真的IaidlData而是一个代理 com.lyc.study.go022.IaidlData.Stub.Proxy(obj)
+             *
+             */
             aidlInterface = IaidlData.Stub.asInterface(service);
+            service.linkToDeath(,0);
             try {
                 aidlInterface.init(new ICallback.Stub() {
                     @Override

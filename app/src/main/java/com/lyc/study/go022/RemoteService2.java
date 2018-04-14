@@ -24,8 +24,22 @@ public class RemoteService2 extends Service {
         return mBinder;
     }
 
+    /**
+     * 可以点进去 查看源码 {@link IaidlData.Stub}  需要格式化一下
+     *
+     * mBinder这个是一个binder 对象 在new的时候向 Service Manager进程注册服务
+     * this.attachInterface(this, DESCRIPTOR);
+     *
+     */
+
     private final IaidlData.Stub mBinder = new IaidlData.Stub()
     {
+        /**
+         * 最终是通过onTransact  TRANSACTION_calResult来实现的
+         * {@link Stub#onTransact(int, android.os.Parcel, android.os.Parcel, int)}
+         * @param input
+         * @return
+         */
         @Override
         public String calResult(int input)
         {
