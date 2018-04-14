@@ -7,7 +7,7 @@
   <Button
       android:layout_width="match_parent"
       android:layout_height="50dp"
-      android:text="hook_01"
+      android:text="hook_01(在模拟器上OK，但是小米6不OK)"
       android:id="@+id/btn_hook"
       />
 

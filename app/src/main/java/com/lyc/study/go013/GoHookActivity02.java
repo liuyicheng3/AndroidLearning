@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.lyc.common.Mlog;
 import com.lyc.study.R;
 
 /**
@@ -16,5 +17,11 @@ public class GoHookActivity02 extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hook_02);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Mlog.e("ondestory");
     }
 }

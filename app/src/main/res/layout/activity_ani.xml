@@ -5,6 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+
+  <com.lyc.study.go014.ticker.TickerView
+      android:background="@color/black"
+      android:id="@+id/tickerView"
+      android:layout_width="100dp"
+      android:layout_height="40dp"
+      app:ticker_animationDuration="1500"
+
+      />
+  <Button
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:text="Num"
+      android:id="@+id/btn_num"
+      />
+
   <Button
       android:layout_width="match_parent"
       android:layout_height="50dp"

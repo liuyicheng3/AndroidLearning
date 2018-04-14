@@ -10,6 +10,7 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -21,14 +22,16 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 
 import com.lyc.study.R;
+import com.lyc.study.go014.ticker.TickerView;
 
 /**
  * Created by lyc on 17/5/15.
  */
 
 public class GoAniActivity extends Activity {
-    private Button btn_sleep_go,btn_mult,btn_keyframe,btn_tween;
+    private Button btn_sleep_go,btn_mult,btn_keyframe,btn_tween,btn_num;
     private View iv_target_01;
+    private TickerView tickerView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +42,15 @@ public class GoAniActivity extends Activity {
     }
 
     private void initViews() {
+        tickerView = (TickerView) findViewById(R.id.tickerView);
+        btn_num = (Button) findViewById(R.id.btn_num);
+        btn_num.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valueAnimator();
+            }
+        });
+
         btn_sleep_go= (Button) findViewById(R.id.btn_sleep_go);
 
         btn_sleep_go.setOnClickListener(new View.OnClickListener() {
@@ -161,5 +173,13 @@ public class GoAniActivity extends Activity {
                 giftControl.loadGift(giftModel);
             }
         });
+    }
+
+    private void valueAnimator(){
+        tickerView.setTextSize(20);
+        tickerView.setAnimationDuration(2000);
+        tickerView.setAnimationInterpolator(new OvershootInterpolator());
+        tickerView.setGravity(Gravity.START);
+
     }
 }

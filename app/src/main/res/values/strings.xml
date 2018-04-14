@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">に勉强する</string>
+    <string name="app_name">に勉强する（安装）</string>
+
+    <string name="app_name_launcher">に勉强する(主屏显示)</string>
+
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_go_phone">GoPhoneActivity</string>
     <string name="marquee_texts">心中有阳光，脚底有力量。心中有阳光，脚底有力量。心中有阳光，脚底有力量。心中有阳光，脚底有力量。</string>

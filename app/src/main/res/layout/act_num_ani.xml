@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+
+    <com.lyc.study.go014.ticker.TickerView
+        android:id="@+id/ticker1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/activity_vertical_margin"
+        android:shadowColor="@android:color/black"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="2"
+        android:text="我们000000"
+        android:textColor="@color/black"
+        android:textSize="50sp"
+        app:ticker_defaultCharacterList="number"
+        app:ticker_animationDuration="1500"
+        />
+
+
+        <!--<com.lyc.study.go014.ticker.TickerView-->
+            <!--android:id="@+id/ticker2"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center"-->
+            <!--android:padding="@dimen/activity_vertical_margin"-->
+            <!--android:textAppearance="@style/TickerTextAppearance"-->
+            <!--android:textStyle="bold"-->
+            <!--app:ticker_animationDuration="3500"-->
+            <!--app:ticker_defaultCharacterList="number"-->
+            <!--android:text="我们123.45" />-->
+
+
+
+    <Button
+        android:id="@+id/perfBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="perf_test" />
+
+</LinearLayout>
