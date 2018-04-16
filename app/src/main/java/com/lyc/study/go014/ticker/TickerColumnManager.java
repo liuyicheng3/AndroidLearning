@@ -174,6 +174,7 @@ class TickerColumnManager {
 
         for (int i = 0, size = tickerColumns.size(); i < size; i++) {
             final TickerColumn column = tickerColumns.get(i);
+            Mlog.e(i+":"+column.toString());
             column.draw(canvas, textPaint);
             canvas.translate(column.getCurrentWidth(), 0f);
         }

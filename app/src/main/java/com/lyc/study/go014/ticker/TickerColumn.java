@@ -249,4 +249,14 @@ class TickerColumn {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[");
+        for (char[] item:characterLists){
+            sb.append(new String(item)+",");
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 }

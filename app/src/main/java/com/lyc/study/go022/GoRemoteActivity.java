@@ -114,7 +114,11 @@ public class GoRemoteActivity extends BaseActivity implements View.OnClickListen
              *
              */
             aidlInterface = IaidlData.Stub.asInterface(service);
-            service.linkToDeath(,0);
+            try {
+                service.linkToDeath(mDeathRecipient,0);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
             try {
                 aidlInterface.init(new ICallback.Stub() {
                     @Override
