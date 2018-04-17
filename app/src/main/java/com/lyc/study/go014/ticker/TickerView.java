@@ -168,10 +168,8 @@ public class TickerView extends View {
             textStyle = styledAttributes.textStyle;
             setTypeface(textPaint.getTypeface());
         }
-
-        setTextColor(Color.BLUE);
         setTextSize(styledAttributes.textSize);
-
+        //设置右侧小字的size
         smallPaint.setColor(Color.parseColor("#888888"));
         smallPaint.setTextSize(UtilsManager.dip2px(context,20));
 

@@ -184,7 +184,6 @@ class TickerColumnManager {
      * accordingly for the draw procedures.
      */
     void draw(Canvas canvas, Paint textPaint,Paint smallPaint) {
-        textPaint.setColor(Color.RED);
         for (int i = 0, size = tickerColumns.size(); i < size; i++) {
             final TickerColumn column = tickerColumns.get(i);
             if (i >= tickerColumns.size() - suffixTextSum) {

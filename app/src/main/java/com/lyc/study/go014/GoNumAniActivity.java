@@ -24,7 +24,7 @@ public class GoNumAniActivity extends Activity {
         setContentView(R.layout.act_num_ani);
 
         ticker1 = (TickerView) findViewById(R.id.ticker1);
-        ticker1.setText("000000000我们",false);
+        ticker1.setText("0000.00000人民币",false);
         ticker1.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -54,7 +54,7 @@ public class GoNumAniActivity extends Activity {
         ticker1.post(new Runnable() {
             @Override
             public void run() {
-                ticker1.setText("123456789我们",true);
+                ticker1.setText("1234.56789人民币",true);
                 ll_content.setVisibility(View.VISIBLE);
             }
         });
