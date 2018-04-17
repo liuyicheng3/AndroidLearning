@@ -1,17 +1,22 @@
 package com.lyc.study.go014;
 
+import android.animation.Animator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.lyc.study.R;
 import com.lyc.study.go014.ticker.TickerView;
+
+import java.util.concurrent.locks.ReadWriteLock;
 
 
 public class GoNumAniActivity extends Activity {
 
     private TickerView ticker1, ticker2;
+    private LinearLayout ll_content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,15 +24,38 @@ public class GoNumAniActivity extends Activity {
         setContentView(R.layout.act_num_ani);
 
         ticker1 = (TickerView) findViewById(R.id.ticker1);
-        ticker1.setText("我们1231.45123");
-//        ticker2 = (TickerView) findViewById(R.id.ticker2);
-//        ticker2.setText("我们99.45");
-
-
-        findViewById(R.id.perfBtn).setOnClickListener(new View.OnClickListener() {
+        ticker1.setText("000000000我们",false);
+        ticker1.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
-            public void onClick(View v) {
-                ticker1.setText("FH99999");
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+        ll_content = (LinearLayout) findViewById(R.id.ll_content);
+        ll_content.setVisibility(View.INVISIBLE);
+
+
+        ticker1.post(new Runnable() {
+            @Override
+            public void run() {
+                ticker1.setText("123456789我们",true);
+                ll_content.setVisibility(View.VISIBLE);
             }
         });
     }

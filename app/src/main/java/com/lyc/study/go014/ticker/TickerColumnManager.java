@@ -17,6 +17,7 @@
 package com.lyc.study.go014.ticker;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 
 
@@ -41,17 +42,23 @@ import java.util.Set;
 @SuppressWarnings("ForLoopReplaceableByForEach")
 class TickerColumnManager {
     final ArrayList<TickerColumn> tickerColumns = new ArrayList<>();
-    private final TickerDrawMetrics metrics;
+    private final TickerDrawMetrics metrics,smallMetrics;
 
     private List<char[]> characterLists;
     // A minor optimization so that we can cache the indices of each character.
     private List<Map<Character, Integer>> characterIndicesMaps;
     private Set<Character> supportedCharacters;
+    private int suffixTextSum = 0;
 
-    TickerColumnManager(TickerDrawMetrics metrics) {
+    TickerColumnManager(TickerDrawMetrics metrics,TickerDrawMetrics smallMetrics,int suffixTextSum) {
         this.metrics = metrics;
+        this.smallMetrics = smallMetrics;
+        this.suffixTextSum = suffixTextSum;
     }
 
+    public void setSuffixTextSum(int suffixTextSum) {
+        this.suffixTextSum = suffixTextSum;
+    }
     /**
      * @inheritDoc TickerView#setCharacterLists
      */
@@ -108,8 +115,14 @@ class TickerColumnManager {
         for (int i = 0; i < actions.length; i++) {
             switch (actions[i]) {
                 case LevenshteinUtils.ACTION_INSERT:
-                    tickerColumns.add(columnIndex,
-                            new TickerColumn(characterLists, characterIndicesMaps, metrics));
+                    if (i >= actions.length - suffixTextSum) {
+                        tickerColumns.add(columnIndex,
+                                new TickerColumn(characterLists, characterIndicesMaps, smallMetrics));
+                    } else {
+                        tickerColumns.add(columnIndex,
+                                new TickerColumn(characterLists, characterIndicesMaps, metrics));
+                    }
+
                     // Intentional fallthrough
                 case LevenshteinUtils.ACTION_SAME:
                     tickerColumns.get(columnIndex).setTargetChar(text[textIndex]);
@@ -170,12 +183,15 @@ class TickerColumnManager {
      * by {@param animationProgress}. As a side effect, this method will also translate the canvas
      * accordingly for the draw procedures.
      */
-    void draw(Canvas canvas, Paint textPaint) {
-
+    void draw(Canvas canvas, Paint textPaint,Paint smallPaint) {
+        textPaint.setColor(Color.RED);
         for (int i = 0, size = tickerColumns.size(); i < size; i++) {
             final TickerColumn column = tickerColumns.get(i);
-            Mlog.e(i+":"+column.toString());
-            column.draw(canvas, textPaint);
+            if (i >= tickerColumns.size() - suffixTextSum) {
+                column.draw(canvas, smallPaint);
+            } else {
+                column.draw(canvas, textPaint);
+            }
             canvas.translate(column.getCurrentWidth(), 0f);
         }
     }

@@ -8,22 +8,28 @@
     android:background="@color/white"
     >
 
-    <com.lyc.study.go014.ticker.TickerView
-        android:id="@+id/ticker1"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="@dimen/activity_vertical_margin"
-        android:shadowColor="@android:color/black"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="2"
-        android:text="我们000000"
-        android:textColor="@color/black"
-        android:textSize="50sp"
-        app:ticker_defaultCharacterList="number"
-        app:ticker_animationDuration="1500"
-        />
+        android:gravity="bottom"
+        android:id="@+id/ll_content"
+        >
+
+        <com.lyc.study.go014.ticker.TickerView
+            android:id="@+id/ticker1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/activity_vertical_margin"
+            android:shadowRadius="2"
+            android:textSize="50sp"
+            app:ticker_defaultCharacterList="number"
+            app:ticker_animationDuration="1500"
+            android:text="111111"
+            />
+    </LinearLayout>
+
+
 
 
         <!--<com.lyc.study.go014.ticker.TickerView-->

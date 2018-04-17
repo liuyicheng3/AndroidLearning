@@ -2,7 +2,6 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:style/Theme.Translucent">
-        <item name="android:windowNoTitle">true</item>
         <item name="android:background">@color/white</item>
     </style>
     <!--文字描边-->

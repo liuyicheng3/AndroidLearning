@@ -80,7 +80,11 @@ class TickerColumn {
         // Set the current and target characters for the animation
         this.targetChar = targetChar;
         this.sourceWidth = this.currentWidth;
-        this.targetWidth = metrics.getCharWidth(targetChar);
+        if (Character.isDigit(targetChar)){
+            this.targetWidth = metrics.getCharWidth('8');
+        }else {
+            this.targetWidth = metrics.getCharWidth(targetChar);
+        }
         this.minimumRequiredWidth = Math.max(this.sourceWidth, this.targetWidth);
 
         // Calculate the current indices
@@ -152,7 +156,12 @@ class TickerColumn {
     }
 
     private void checkForDrawMetricsChanges() {
-        final float currentTargetWidth = metrics.getCharWidth(targetChar);
+        float currentTargetWidth ;
+        if (Character.isDigit(targetChar)){
+            currentTargetWidth = metrics.getCharWidth('8');
+        }else {
+            currentTargetWidth = metrics.getCharWidth(targetChar);
+        }
         // Only resize due to DrawMetrics changes when we are done with whatever animation we
         // are running.
         if (currentWidth == targetWidth && targetWidth != currentTargetWidth) {
@@ -244,7 +253,6 @@ class TickerColumn {
             int index, float verticalOffset) {
         if (index >= 0 && index < characterList.length) {
             canvas.drawText(characterList, index, 1, 0f, verticalOffset, textPaint);
-//            Mlog.e("drawText: "+new String(characterList));
             return true;
         }
         return false;

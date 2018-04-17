@@ -38,7 +38,9 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 
+import com.lyc.common.UtilsManager;
 import com.lyc.study.R;
+import com.lyc.study.go020.Utils;
 
 
 /**
@@ -70,7 +72,12 @@ public class TickerView extends View {
     protected final Paint textPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
 
     private final TickerDrawMetrics metrics = new TickerDrawMetrics(textPaint);
-    private final TickerColumnManager columnManager = new TickerColumnManager(metrics);
+
+    protected final Paint smallPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
+
+    private final TickerDrawMetrics smallMetrics = new TickerDrawMetrics(smallPaint);
+
+    private final TickerColumnManager columnManager = new TickerColumnManager(metrics,smallMetrics,0);
     private final ValueAnimator animator = ValueAnimator.ofFloat(1f);
 
     // Minor optimizations for re-positioning the canvas for the composer.
@@ -162,8 +169,12 @@ public class TickerView extends View {
             setTypeface(textPaint.getTypeface());
         }
 
-        setTextColor(styledAttributes.textColor);
+        setTextColor(Color.BLUE);
         setTextSize(styledAttributes.textSize);
+
+        smallPaint.setColor(Color.parseColor("#888888"));
+        smallPaint.setTextSize(UtilsManager.dip2px(context,20));
+
 
         final int defaultCharList =
                 arr.getInt(R.styleable.TickerView_ticker_defaultCharacterList, 0);
@@ -222,14 +233,13 @@ public class TickerView extends View {
 
         void applyTypedArray(TypedArray arr) {
             gravity = arr.getInt(R.styleable.TickerView_android_gravity, gravity);
-            shadowColor = arr.getColor(R.styleable.TickerView_android_shadowColor,
-                    shadowColor);
+            shadowColor = Color.BLACK;
             shadowDx = arr.getFloat(R.styleable.TickerView_android_shadowDx, shadowDx);
             shadowDy = arr.getFloat(R.styleable.TickerView_android_shadowDy, shadowDy);
             shadowRadius = arr.getFloat(R.styleable.TickerView_android_shadowRadius,
                     shadowRadius);
             text = arr.getString(R.styleable.TickerView_android_text);
-            textColor = arr.getColor(R.styleable.TickerView_android_textColor, textColor);
+            textColor = Color.BLACK;
             textSize = arr.getDimension(R.styleable.TickerView_android_textSize, textSize);
             textStyle = arr.getInt(R.styleable.TickerView_android_textStyle, textStyle);
         }
@@ -294,6 +304,16 @@ public class TickerView extends View {
 
         this.text = text;
         final char[] targetText = text == null ? new char[0] : text.toCharArray();
+
+        int specialSuffix = 0;
+        for (int i = targetText.length - 1; i >= 0; i--) {
+            if (!Character.isDigit(targetText[i])) {
+                specialSuffix++;
+            } else {
+                break;
+            }
+        }
+        columnManager.setSuffixTextSum(specialSuffix);
 
         columnManager.setText(targetText);
         setContentDescription(text);
@@ -575,7 +595,7 @@ public class TickerView extends View {
         // canvas.drawText writes the text on the baseline so we need to translate beforehand.
         canvas.translate(0f, metrics.getCharBaseline());
 
-        columnManager.draw(canvas, textPaint);
+        columnManager.draw(canvas, textPaint,smallPaint);
 
         canvas.restore();
     }
