@@ -16,9 +16,17 @@ import java.net.Proxy;
 
 public class ApplicationManger extends Application {
 
+    private static ApplicationManger llApplication;
+
+    public static ApplicationManger getInstance(){
+        return llApplication;
+    }
+
+
     @Override
     public void onCreate() {
         super.onCreate();
+        llApplication = this;
         HookUtil hookUtil=new HookUtil(ProxyActivity.class, this);
         hookUtil.hookSystemHandler();
         hookUtil.hookAms();

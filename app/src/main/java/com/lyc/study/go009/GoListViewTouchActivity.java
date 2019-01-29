@@ -13,7 +13,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 import com.lyc.common.UtilsManager;
 import com.lyc.study.R;
 
@@ -67,14 +67,14 @@ public class GoListViewTouchActivity  extends Activity {
                 holder.item.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Mlog.e("item click");
+                        MLog.e("item click");
                     }
                 });
                 holder.parent = (ViewGroup) convertView.findViewById(R.id.parent);
                 /*holder.parent.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Mlog.e("parent click");
+                        MLog.e("parent click");
 
                     }
                 });
@@ -82,7 +82,7 @@ public class GoListViewTouchActivity  extends Activity {
                 /*holder.parent.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
-                        Mlog.e("on TOuch");
+                        MLog.e("on TOuch");
                         return false;
                     }
                 });*/

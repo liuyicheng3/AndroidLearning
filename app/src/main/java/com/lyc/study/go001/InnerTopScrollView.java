@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ScrollView;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 
 
 /**
@@ -34,7 +34,7 @@ public class InnerTopScrollView extends ScrollView {
 	 * @param flag
 	 */
 	private void setParentScrollAble(boolean flag) {
-		Mlog.e("flag" + flag);
+		MLog.e("flag" + flag);
 		parentScrollView.requestDisallowInterceptTouchEvent(!flag);
 	}
 
@@ -58,7 +58,7 @@ public class InnerTopScrollView extends ScrollView {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
-		Mlog.e("scrollView  ontouch  "+ev.getAction());
+		MLog.e("scrollView  ontouch  "+ev.getAction());
 		View child = getChildAt(0);
 		if (parentScrollView != null) {
 			if (ev.getAction() == MotionEvent.ACTION_MOVE) {

@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 
 /**
  * Created by lyc on 17/1/29.
@@ -44,11 +44,11 @@ public class CustomLinnearLayout extends LinearLayout {
                     if ("vip".equals(child.getTag())){
                         targetChild = child;
                         targetPos= i;
-                        Mlog.e("MeasureSpec.getSize(widthMeasureSpec):"+MeasureSpec.getSize(widthMeasureSpec));
+                        MLog.e("MeasureSpec.getSize(widthMeasureSpec):"+MeasureSpec.getSize(widthMeasureSpec));
                         int fakeWidthMeasureSpec = MeasureSpec.makeMeasureSpec(MeasureSpec.getSize(widthMeasureSpec),MeasureSpec.AT_MOST);
                         measureChild(targetChild,fakeWidthMeasureSpec,heightMeasureSpec);
                         measureWidth = targetChild.getMeasuredWidth();
-                        Mlog.e("measureWidth:"+measureWidth);
+                        MLog.e("measureWidth:"+measureWidth);
                         break;
                     }
                 }
@@ -56,7 +56,7 @@ public class CustomLinnearLayout extends LinearLayout {
 
             if (targetChild!=null){
                 int leftWidth = MeasureSpec.getSize(widthMeasureSpec)- measureWidth;
-                Mlog.e("leftWidth:"+leftWidth);
+                MLog.e("leftWidth:"+leftWidth);
                 int leftWidthMeasureSpec = MeasureSpec.makeMeasureSpec(leftWidth,MeasureSpec.getMode(widthMeasureSpec));
                 super.onMeasure(leftWidthMeasureSpec,heightMeasureSpec);
                 measureChild(targetChild,MeasureSpec.makeMeasureSpec(measureWidth,MeasureSpec.EXACTLY),heightMeasureSpec);

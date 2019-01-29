@@ -12,7 +12,7 @@ import android.view.animation.Interpolator;
 import android.widget.Scroller;
 import android.widget.AbsListView.OnScrollListener;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 
 /**
  * lyc
@@ -110,7 +110,7 @@ public class VerticalPagerView extends ViewGroup {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Mlog.e("onInterceptTouchEvent" + ev);
+        MLog.e("onInterceptTouchEvent" + ev);
 
         final int action = ev.getAction();
         if ((action == MotionEvent.ACTION_MOVE) && (mIsBeingDragged)) {
@@ -146,7 +146,7 @@ public class VerticalPagerView extends ViewGroup {
     VelocityTracker mVelocityTracker;
 
     public boolean onTouchEvent(MotionEvent event) {
-        Mlog.e("onTouchEvent" + canScroll);
+        MLog.e("onTouchEvent" + canScroll);
 
         if(!canScroll){
             return false;
@@ -159,7 +159,7 @@ public class VerticalPagerView extends ViewGroup {
         float y = event.getY();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                Mlog.e("onTouchEvent0" + event);
+                MLog.e("onTouchEvent0" + event);
 
                 isFingerTouch=true;
                 if (!mScroller.isFinished()) {
@@ -170,27 +170,27 @@ public class VerticalPagerView extends ViewGroup {
                 break;
 
             case MotionEvent.ACTION_MOVE:
-                Mlog.e("onTouchEvent1" + event);
+                MLog.e("onTouchEvent1" + event);
 
                 isFingerTouch=true;
                 final int deltaY = (int) (mLastMotionY - y);
                 mLastMotionY = y;
                 if (getScrollY() >= 0 && getScrollY() <= getAllScrollY()) {
-                    Mlog.e("onTouchEvent1--" + event);
+                    MLog.e("onTouchEvent1--" + event);
 
                     if (deltaY >= 0) {
-                        Mlog.e("onTouchEvent1-0" + event);
+                        MLog.e("onTouchEvent1-0" + event);
                         //手指向下拖动的时候处理滑动
                         scrollBy(0, Math.min(deltaY, (getAllScrollY() - getScrollY() > 0 ? getAllScrollY() - getScrollY() : 0)));
 
                     } else {
 
                         if(getScrollY()==0){
-                            Mlog.e("onTouchEvent1-?" + event);
+                            MLog.e("onTouchEvent1-?" + event);
 
                             return true;
                         }
-                        Mlog.e("onTouchEvent1-1" + event);
+                        MLog.e("onTouchEvent1-1" + event);
 
                         scrollBy(0, getScrollY() != 0 ? Math.max(deltaY, -getScrollY()) : deltaY);
                     }
@@ -199,7 +199,7 @@ public class VerticalPagerView extends ViewGroup {
                 break;
 
             case MotionEvent.ACTION_UP:
-                Mlog.e("onTouchEvent2" + event);
+                MLog.e("onTouchEvent2" + event);
 
                 isFingerTouch=false;
                 mVelocityTracker.computeCurrentVelocity(1000, ViewConfiguration.get(this.getContext()).getScaledMaximumFlingVelocity());
@@ -275,7 +275,7 @@ public class VerticalPagerView extends ViewGroup {
 
     //true表示手指朝上滑动
     private void slide(boolean isUp) {
-        Mlog.e("isUp:"+isUp+"mScroller.getCurrY():"+mScroller.getCurrY());
+        MLog.e("isUp:"+isUp+"mScroller.getCurrY():"+mScroller.getCurrY());
         if (isUp) {
             if (getScrollY() <pageHeight0+pageHeight1) {
                 int _currentScrollY=getCurrentScrollLenght(getScrollY());
@@ -328,7 +328,7 @@ public class VerticalPagerView extends ViewGroup {
         }
         int deltaY=getScrollY()-y;
         mScroller.startScroll(0, getScrollY(), 0, -deltaY, (int) time_delay);
-        Mlog.e("deltaY" + deltaY);
+        MLog.e("deltaY" + deltaY);
         invalidate();
 
     }
@@ -347,21 +347,21 @@ public class VerticalPagerView extends ViewGroup {
                 if(CURRENT_SCROLL_STATE!=OnScrollListener.SCROLL_STATE_IDLE && !isFingerTouch){
                     CURRENT_SCROLL_STATE=OnScrollListener.SCROLL_STATE_IDLE;
                     onScrollListener.onScrollStateChanged(null,CURRENT_SCROLL_STATE);
-                    Mlog.e("CURRENT_SCROLL_STATE:  OnScrollListener.SCROLL_STATE_IDLE");
-                    Mlog.e("getScrollY():"+getScrollY());
+                    MLog.e("CURRENT_SCROLL_STATE:  OnScrollListener.SCROLL_STATE_IDLE");
+                    MLog.e("getScrollY():"+getScrollY());
                 }
             }else{
                 if(isFingerTouch){
                     if(CURRENT_SCROLL_STATE!=OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){
                         CURRENT_SCROLL_STATE=OnScrollListener.SCROLL_STATE_TOUCH_SCROLL;
                         onScrollListener.onScrollStateChanged(null,CURRENT_SCROLL_STATE);
-                        Mlog.e("CURRENT_SCROLL_STATE:  OnScrollListener.SCROLL_STATE_TOUCH_SCROLL");
+                        MLog.e("CURRENT_SCROLL_STATE:  OnScrollListener.SCROLL_STATE_TOUCH_SCROLL");
                     }
                 }else{
                     if(CURRENT_SCROLL_STATE!=OnScrollListener.SCROLL_STATE_FLING){
                         CURRENT_SCROLL_STATE=OnScrollListener.SCROLL_STATE_FLING;
                         onScrollListener.onScrollStateChanged(null,CURRENT_SCROLL_STATE);
-                        Mlog.e("CURRENT_SCROLL_STATE:  OnScrollListener.SCROLL_STATE_FLING");
+                        MLog.e("CURRENT_SCROLL_STATE:  OnScrollListener.SCROLL_STATE_FLING");
                     }
                 }
             }

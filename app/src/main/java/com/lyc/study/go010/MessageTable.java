@@ -4,7 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 
 import java.util.ArrayList;
 import java.util.HashMap;

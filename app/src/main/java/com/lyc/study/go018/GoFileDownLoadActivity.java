@@ -20,7 +20,7 @@ import com.liulishuo.filedownloader.FileDownloadListener;
 import com.liulishuo.filedownloader.FileDownloadSampleListener;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.util.FileDownloadUtils;
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 import com.lyc.common.UtilsManager;
 import com.lyc.study.R;
 
@@ -45,7 +45,7 @@ public class GoFileDownLoadActivity  extends Activity{
             @Override
             public void onClick(View v) {
                 String path = FileDownloadUtils.getDefaultSaveRootPath() + File.separator + "tmpdir1" + File.separator ;
-                Mlog.e(path);
+                MLog.e(path);
 //                FileDownloader.getImpl().create("http://test.ssyun.cn/ljg/project/zhwnl/android/BiBiChat_release.apk")
 //                        .setPath(Environment.getExternalStorageDirectory().getAbsolutePath()
                 BaseDownloadTask task=FileDownloader.getImpl().create("http://test.ssyun.cn/ljg/project/zhwnl/android/BiBiChat_release.apk")
@@ -102,20 +102,20 @@ public class GoFileDownLoadActivity  extends Activity{
         wv.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                Mlog.e("shouldOverrideUrlLoading:"+url);
+                MLog.e("shouldOverrideUrlLoading:"+url);
                 return super.shouldOverrideUrlLoading(view, url);
 
             }
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                Mlog.e("onPageStarted:"+url);
+                MLog.e("onPageStarted:"+url);
                 super.onPageStarted(view, url, favicon);
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                Mlog.e("onPageFinished:"+url);
+                MLog.e("onPageFinished:"+url);
                 super.onPageFinished(view, url);
             }
         });

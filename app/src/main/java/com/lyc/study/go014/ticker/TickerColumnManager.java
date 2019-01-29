@@ -21,7 +21,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,7 +1,6 @@
 package com.lyc.study.go005;
 
 import android.content.Context;
-import android.graphics.AvoidXfermode;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;

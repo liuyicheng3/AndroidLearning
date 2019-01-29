@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.RelativeLayout;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 
 /**
  * Created by lyc on 16/11/25.
@@ -27,7 +27,7 @@ public class CustomViewGroup extends RelativeLayout {
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         boolean result = super.dispatchTouchEvent(event);
-        Mlog.e(String.valueOf(result));
+        MLog.e(String.valueOf(result));
         return result;
     }
 
@@ -35,14 +35,14 @@ public class CustomViewGroup extends RelativeLayout {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         boolean onInte=super.onInterceptTouchEvent(ev);
-        Mlog.e(String.valueOf(onInte));
+        MLog.e(String.valueOf(onInte));
         return onInte;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         boolean onTouch=super.onTouchEvent(event);
-        Mlog.e(String.valueOf(onTouch));
+        MLog.e(String.valueOf(onTouch));
         return onTouch;
 
     }

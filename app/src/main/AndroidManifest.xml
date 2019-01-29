@@ -25,13 +25,13 @@
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.READ_SYNC_STATS" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <!-- 测试通知联系人发送短信权限 -->
     <!-- <uses-permission android:name="android.permission.SEND_SMS" /> -->
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
@@ -61,7 +61,9 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <data android:host="splash" android:scheme="cundong"/>
             </intent-filter>
+
         </activity>
         <activity android:name=".go001.GoScrollTextActivity" />
         <activity android:name=".go001.GoScrollWebViewActivity" />
@@ -88,9 +90,22 @@
         <activity android:name=".go019.GoRobolectricAct"></activity>
         <activity android:name=".go019.RobolectricSecondActivity"></activity>
         <activity android:name=".go001.GoDragHelperActivity"
+            android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden|adjustResize"
             android:theme="@android:style/Theme.Light.NoTitleBar"
             >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="content"/>
+                <data android:scheme="file"/>
+                <data android:scheme="http" />
+                <data android:mimeType="audio/*"/>
+                <data android:mimeType="application/ogg"/>
+                <data android:mimeType="application/x-ogg"/>
+                <data android:mimeType="application/itunes"/>
+            </intent-filter>
         </activity>
         <activity android:name=".go020.GoCalMd5Activity"></activity>
 
@@ -109,7 +124,17 @@
             android:process=":remote"
             ></service>
 
+        <activity android:name=".go021.GoClipping"></activity>
 
+        <activity android:name=".go023.GoFeatureActivity"
+            android:theme="@style/Theme.AppCompat"
+            ></activity>
+        <activity android:name=".go024.GoDownloaderActivity"
+            android:theme="@style/Theme.AppCompat"
+            ></activity>
+        <activity android:name=".go025.GoMacActivity"
+            android:theme="@style/Theme.AppCompat"
+            ></activity>
 
 
     </application>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="com.lyc.study.go023.TestBehavior"
+        >
+
+
+        <LinearLayout
+            android:id="@+id/rl_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="exitUntilCollapsed|scroll"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="15dp"
+                android:text="java.lang.RuntimeException: Unable to start activity ComponentInfo{com.lyc.study/com.lyc.study.go023.GoFeatureActivity}: android.view.InflateException: Binary XML file line #2: Binary XML file line #2: Error inflating class android.support.design.widget.CoordinatorLayout
+        at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2855)"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="15dp"
+                android:text="java.lang.RuntimeException: Unable to start activity ComponentInfo{com.lyc.study/com.lyc.study.go023.GoFeatureActivity}: android.view.InflateException: Binary XML file line #2: Binary XML file line #2: Error inflating class android.support.design.widget.CoordinatorLayout
+        at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2855)"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="15dp"
+                android:text="java.lang.RuntimeException: Unable to start activity ComponentInfo{com.lyc.study/com.lyc.study.go023.GoFeatureActivity}: android.view.InflateException: Binary XML file line #2: Binary XML file line #2: Error inflating class android.support.design.widget.CoordinatorLayout
+        at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2855)"
+                />
+        </LinearLayout>
+
+        <!--<android.support.v7.widget.Toolbar-->
+            <!--android:id="@+id/toolbar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="?attr/actionBarSize"-->
+            <!--android:background="?attr/colorPrimary"-->
+            <!--app:layout_scrollFlags="scroll|enterAlways" >-->
+
+        <!--</android.support.v7.widget.Toolbar>-->
+
+        <!--<android.support.design.widget.TabLayout-->
+            <!--android:id="@+id/tabs"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:tabGravity="fill" />-->
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/fl_container"
+        android:orientation="vertical"
+        >
+        <!--可滑动的布局内容-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+
+
+</android.support.design.widget.CoordinatorLayout>

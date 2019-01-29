@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.OverScroller;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 import com.lyc.study.R;
 
 import java.security.InvalidParameterException;
@@ -197,7 +197,7 @@ public class TimeWheelView extends View implements GestureDetector.OnGestureList
             mLeftBound = 0;
             mRightBound = 24 * 60 / mCalibrationUnit * mCalibrationDistance;
 
-            Mlog.e( "mWidth: " + mWidth + "mHeight: " + mHeight+ "mMaxOverScrollDistance: " + mMaxOverScrollDistance);
+            MLog.e( "mWidth: " + mWidth + "mHeight: " + mHeight+ "mMaxOverScrollDistance: " + mMaxOverScrollDistance);
         }
     }
 

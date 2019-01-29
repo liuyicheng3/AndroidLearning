@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 import com.lyc.study.R;
 
 /**
@@ -21,7 +21,7 @@ public class GoDragHelperActivity extends Activity {
         findViewById(R.id.tv_click).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Mlog.e("click");
+                MLog.e("click");
             }
         });
 

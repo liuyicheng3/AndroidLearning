@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 import com.lyc.common.UtilsManager;
 import com.lyc.study.R;
 
@@ -28,12 +28,12 @@ public class GoViewTraversalActivity extends Activity {
         sb.append("100dp："+ UtilsManager.dip2px(this,100)+" ~ ");
         sb.append("50dp："+ UtilsManager.dip2px(this,50)+" ~ ");
         sb.append("20dp："+ UtilsManager.dip2px(this,20)+" ~ ");
-        Mlog.e(sb.toString());
+        MLog.e(sb.toString());
         vg_top= findViewById(R.id.vg_top);
         vg_top.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Mlog.e("vg_top onClick");
+                MLog.e("vg_top onClick");
                 UtilsManager.toast(GoViewTraversalActivity.this,"top click");
             }
         });
@@ -41,7 +41,7 @@ public class GoViewTraversalActivity extends Activity {
        vg_top.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                Mlog.e("vg_top onTouch");
+                MLog.e("vg_top onTouch");
                 return true;
             }
         });
@@ -50,7 +50,7 @@ public class GoViewTraversalActivity extends Activity {
         vg_son.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Mlog.e("vg_son onClick");
+                MLog.e("vg_son onClick");
                 UtilsManager.toast(GoViewTraversalActivity.this,"son click");
             }
         });

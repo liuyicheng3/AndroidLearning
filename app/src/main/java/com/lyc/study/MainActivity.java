@@ -8,8 +8,11 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.MenuItem;
@@ -23,7 +26,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 import com.lyc.common.UtilsManager;
 
 import org.json.JSONObject;
@@ -66,6 +69,11 @@ public class MainActivity extends Activity {
 //                window.setStatusBarColor(getDefaultStatusBarColor());
             }
         }
+
+        WifiManager wifiManager = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        String  mac = wifiInfo.getMacAddress();
+        MLog.e("mac:"+mac);
     }
 
     /**米UI上设置状态栏字体颜色为深色的方法
@@ -107,6 +115,14 @@ public class MainActivity extends Activity {
 
         UtilsManager.toast(this, mAdapter.getCount() + " Activities");
         setContentView(mListView);
+        TelephonyManager telephoneManager = (TelephonyManager) this
+                .getSystemService(Context.TELEPHONY_SERVICE);
+//        String imei = telephoneManager.getImei();
+//        String imei0 = telephoneManager.getImei(0);
+//        String imei1 = telephoneManager.getImei(1);
+//        MLog.e("imei:"+imei);
+//        MLog.e("imei0:"+imei0);
+//        MLog.e("imei1:"+imei1);
     }
 
     @Override
@@ -139,7 +155,7 @@ public class MainActivity extends Activity {
 
         try {
             for (PackageInfo packageInfo : pInfos) {
-//                Mlog.e("PackageInfo:" + packageInfo.packageName);
+//                MLog.e("PackageInfo:" + packageInfo.packageName);
                 if (packageInfo.packageName.equals(getPackageName())) {
                     ActivityInfo[] activities = getPackageManager().getPackageInfo(packageInfo.packageName, PackageManager.GET_ACTIVITIES).activities;
                     if (activities != null) {
@@ -162,7 +178,7 @@ public class MainActivity extends Activity {
                 }
             }
         } catch (Exception e) {
-            Mlog.e(e.toString());
+            MLog.e(e.toString());
         }
         return samples;
     }
@@ -180,13 +196,13 @@ public class MainActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-        Mlog.e("onPause");
+        MLog.e("onPause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Mlog.e("onStop");
+        MLog.e("onStop");
     }
 
     class ActivityAdapter extends BaseAdapter {

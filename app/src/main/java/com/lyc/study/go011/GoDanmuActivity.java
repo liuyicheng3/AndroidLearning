@@ -32,7 +32,7 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.VideoView;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 import com.lyc.common.UtilsManager;
 import com.lyc.study.R;
 
@@ -178,7 +178,7 @@ public class GoDanmuActivity extends Activity implements View.OnClickListener {
                     paintPoint.setColor(Color.BLUE);
                 }
             }catch (Exception e){
-                Mlog.e("tag Exception:"+ e.toString());
+                MLog.e("tag Exception:"+ e.toString());
             }
             canvas.drawCircle(20,danmaku.paintHeight/2,10,paintPoint);
         }

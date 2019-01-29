@@ -20,7 +20,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 
 import java.util.List;
 import java.util.Map;

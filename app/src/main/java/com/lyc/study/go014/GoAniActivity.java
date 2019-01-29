@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -29,7 +30,7 @@ import com.lyc.study.go014.ticker.TickerView;
  */
 
 public class GoAniActivity extends Activity {
-    private Button btn_sleep_go,btn_mult,btn_keyframe,btn_tween,btn_num;
+    private Button btn_sleep_go,btn_mult,btn_keyframe,btn_tween,btn_num,btn_rotate;
     private View iv_target_01;
     private TickerView tickerView;
 
@@ -152,6 +153,40 @@ public class GoAniActivity extends Activity {
 
                 iv_target_01.startAnimation(total);
 
+
+            }
+        });
+
+        btn_rotate  = (Button) findViewById(R.id.btn_rotate);
+        btn_rotate.setOnClickListener(new View.OnClickListener() {
+            Animation customRotateAnim;
+            @Override
+            public void onClick(View v) {
+                if (customRotateAnim==null){
+                    customRotateAnim = new CustomRotateAnim();
+                    customRotateAnim.setDuration(30000);
+                    customRotateAnim.setInterpolator(new AccelerateInterpolator());
+                    customRotateAnim.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            customRotateAnim  = null;
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
+                    iv_target_01.startAnimation(customRotateAnim);
+                }else {
+                    customRotateAnim.cancel();
+                    customRotateAnim = null;
+                }
 
             }
         });

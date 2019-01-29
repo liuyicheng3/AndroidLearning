@@ -2,6 +2,7 @@ package com.lyc.study.go016;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,6 +20,7 @@ import com.lyc.common.CustomDialog;
 import com.lyc.common.UtilsManager;
 import com.lyc.study.R;
 
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -157,6 +160,15 @@ public class GoRecycleViewActivity  extends Activity implements View.OnClickList
             btn_check.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    /*Button button = new Button(GoRecycleViewActivity.this);
+                    WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+                    WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                    lp.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
+                    lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                    lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+                    windowManager.addView(button,lp);
+*/
                     StringBuilder sb=new StringBuilder();
                     sb.append("RecyclerView.getChildLayoutPosition"+lv.getChildLayoutPosition(itemView)).append("\n");
                     sb.append("RecyclerView.getChildLayoutPosition"+MyViewHolder.this.getLayoutPosition()).append("\n");
@@ -165,7 +177,6 @@ public class GoRecycleViewActivity  extends Activity implements View.OnClickList
                     infoDialog.show(sb.toString());
                 }
             });
-
             btn_insert.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

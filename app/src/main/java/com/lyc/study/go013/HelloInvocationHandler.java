@@ -1,6 +1,6 @@
 package com.lyc.study.go013;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -24,13 +24,13 @@ public class HelloInvocationHandler implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
         // 前置的业务逻辑操作
-        Mlog.e("---开始");
+        MLog.e("---开始");
 
         // 调用被代理类的方法，传入参数args，得到返回
 //        Object object = method.invoke(hello, args);
 
         // 后置的业务逻辑操作
-        Mlog.e("---结束");
+        MLog.e("---结束");
         if (method.getName().equalsIgnoreCase("hello")){
             return "call IHello.hello";
         }else if (method.getName().equalsIgnoreCase("hello2")){

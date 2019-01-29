@@ -9,7 +9,7 @@ import android.view.ViewConfiguration;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 
 
 /**
@@ -107,7 +107,7 @@ public class InnerButtomWebView extends WebView {
 	 * @param flag
 	 */
 	private void setParentScrollAble(boolean flag) {
-		Mlog.e("flag" + flag);
+		MLog.e("flag" + flag);
 		parentScrollView.requestDisallowInterceptTouchEvent(!flag);
 	}
 
@@ -118,7 +118,7 @@ public class InnerButtomWebView extends WebView {
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
 
-        Mlog.e("onInterceptTouchEvent  "+ev.getAction());
+        MLog.e("onInterceptTouchEvent  "+ev.getAction());
         float x = ev.getX();
         float y = ev.getY();
 
@@ -157,7 +157,7 @@ public class InnerButtomWebView extends WebView {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
-		Mlog.e("ontouch  "+ev.getAction());
+		MLog.e("ontouch  "+ev.getAction());
 		if (parentScrollView != null){
 
             float x = ev.getX();
@@ -189,10 +189,10 @@ public class InnerButtomWebView extends WebView {
 				boolean isButtom=false;
 
                 if((int)(this.getContentHeight()* this.getScale()) -( this.getHeight()+ this.getScrollY())<=10){
-                    Mlog.e("remain"+(getContentHeight()* this.getScale() -( this.getHeight()+ this.getScrollY())));
+                    MLog.e("remain"+(getContentHeight()* this.getScale() -( this.getHeight()+ this.getScrollY())));
 					isButtom=true;
 				}else{
-                    Mlog.e("remain"+(getContentHeight()* this.getScale() -( this.getHeight()+ this.getScrollY())));
+                    MLog.e("remain"+(getContentHeight()* this.getScale() -( this.getHeight()+ this.getScrollY())));
                     isButtom=false;
 				}
 				if(this.getScrollY()==0){

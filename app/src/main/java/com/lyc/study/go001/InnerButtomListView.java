@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.widget.ListView;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 
 
 /**
@@ -42,7 +42,7 @@ public class InnerButtomListView extends ListView {
 	 * @param flag
 	 */
 	private void setParentScrollAble(boolean flag) {
-		Mlog.e("flag" + flag);
+		MLog.e("flag" + flag);
 		parentScrollView.requestDisallowInterceptTouchEvent(!flag);
 	}
 
@@ -52,7 +52,7 @@ public class InnerButtomListView extends ListView {
 
     @Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Mlog.e("onInterceptTouchEvent "+ev.getAction());
+        MLog.e("onInterceptTouchEvent "+ev.getAction());
 
         float x = ev.getX();
         float y = ev.getY();
@@ -98,7 +98,7 @@ public class InnerButtomListView extends ListView {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
-		Mlog.e("ontouch "+ev.getAction());
+		MLog.e("ontouch "+ev.getAction());
 		if (parentScrollView != null) {
 
             float x = ev.getX();

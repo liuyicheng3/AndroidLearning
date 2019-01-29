@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 import com.lyc.common.UtilsManager;
 import com.lyc.study.R;
 
@@ -39,27 +39,27 @@ public class GoEventActivity  extends Activity {
             @Override
             public void onClick(View view) {
                 UtilsManager.toast(GoEventActivity.this,"click");
-                Mlog.e("click");
+                MLog.e("click");
             }
         });*/
         vg_0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Mlog.e("trigger");
+                MLog.e("trigger");
                 UtilsManager.toast(GoEventActivity.this,"trigger");
             }
         });
 
         /*vg_1.setOnTouchListener((view, motionEvent) -> {
             if (motionEvent.getAction()==MotionEvent.ACTION_UP)
-                Mlog.e("click");
+                MLog.e("click");
             return false;
         });*/
         vg_1.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction()==MotionEvent.ACTION_UP)
-                    Mlog.e("click");
+                    MLog.e("click");
                 return false;
             }
         });
@@ -71,18 +71,18 @@ public class GoEventActivity  extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-        Mlog.e("onPause");
+        MLog.e("onPause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Mlog.e("onStop");
+        MLog.e("onStop");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Mlog.e("onDestroy");
+        MLog.e("onDestroy");
     }
 }

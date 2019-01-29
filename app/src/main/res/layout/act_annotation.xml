@@ -16,4 +16,49 @@
         android:id="@+id/btn_dialog"
         tools:text=""
         />
+
+    <com.lyc.study.go021.MyView
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <com.lyc.study.go021.CenterTextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        />
+
+    <com.lyc.study.go021.StaticLayoutView
+        android:id="@+id/stv"
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+
+    <RelativeLayout
+        android:layout_width="40dp"
+        android:layout_height="40dp">
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:textColor="@color/black"
+          android:textSize="30dp"
+          android:text="B"
+          android:gravity="center"
+          />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            ></View>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingBottom="20dp"
+            android:background="#0fff"
+            android:textSize="30dp"
+            android:text="B"
+            android:gravity="center"
+            />
+    </RelativeLayout>
+
+
 </LinearLayout>

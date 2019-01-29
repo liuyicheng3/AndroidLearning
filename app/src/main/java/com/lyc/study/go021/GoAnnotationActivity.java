@@ -1,16 +1,21 @@
 package com.lyc.study.go021;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 import com.lyc.study.R;
 import com.lyc.study.go020.InjectView;
 
@@ -41,7 +46,8 @@ public class GoAnnotationActivity extends Activity {
     private EditText  et_input;
     @InjectView(id = R.id.btn_dialog)
     private Button btn_dialog;
-
+    @InjectView(id = R.id.stv)
+    private StaticLayoutView  stv;
     private ExecutorService executorService;
 
     @Override
@@ -57,13 +63,13 @@ public class GoAnnotationActivity extends Activity {
 //                Dialog dialog = new Dialog(mActivity);
 //                dialog.show();
 //                setByCustomStr(Constant.ReadyStatus.OK);
-                Mlog.e("添加10个任务");
+                MLog.e("添加10个任务");
                 for (int i = 0; i < 10; i++) {
                     executorService.submit(new Runnable() {
                         @Override
                         public void run() {
                             try {
-                                Mlog.e(Thread.currentThread().getName());
+                                MLog.e(Thread.currentThread().getName());
                                 Thread.sleep(2000);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
@@ -77,14 +83,16 @@ public class GoAnnotationActivity extends Activity {
         RejectedExecutionHandler rejectHandler  =new RejectedExecutionHandler() {
             @Override
             public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
-                Mlog.e("rejectIng");
+                MLog.e("rejectIng");
 
             }
         };
 
         executorService= new ThreadPoolExecutor(1, 1, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(2),rejectHandler);
-
-
+        TextPaint tp = new TextPaint();
+        tp.setColor(Color.BLUE);
+        tp.setStyle(Paint.Style.FILL);
+        stv.setLayout(new StaticLayout("123123",tp,30, Layout.Alignment.ALIGN_CENTER,0,0,false));
     }
 
 
@@ -125,39 +133,39 @@ public class GoAnnotationActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        Mlog.e("onStart");
+        MLog.e("onStart");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Mlog.e("onRestart");
+        MLog.e("onRestart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Mlog.e("onResume");
+        MLog.e("onResume");
 
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Mlog.e("onPause");
+        MLog.e("onPause");
 
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Mlog.e("onStop");
+        MLog.e("onStop");
 
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Mlog.e("onDestroy");
+        MLog.e("onDestroy");
     }
 }

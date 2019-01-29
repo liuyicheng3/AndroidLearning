@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 
 /**
  * Created by lyc on 16/11/25.
@@ -27,7 +27,7 @@ public class CustomViewGroup2 extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        Mlog.e("dispatchTouchEvent");
+        MLog.e("dispatchTouchEvent");
         return super.dispatchTouchEvent(event);
     }
 
@@ -35,14 +35,14 @@ public class CustomViewGroup2 extends FrameLayout {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         boolean onInte=super.onInterceptTouchEvent(ev);
-        Mlog.e("onInte"+onInte);
+        MLog.e("onInte"+onInte);
         return onInte;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         boolean onTouch=super.onTouchEvent(event);
-        Mlog.e("onTouch"+onTouch);
+        MLog.e("onTouch"+onTouch);
         return onTouch;
 
     }

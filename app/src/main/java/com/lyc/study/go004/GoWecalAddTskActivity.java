@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 import com.lyc.study.R;
 
 /**
@@ -27,7 +27,7 @@ public class GoWecalAddTskActivity extends Activity {
         verticalPager.setOnScrollListener(new VerticalPagerView.OnScrollListener() {
             @Override
             public void onScrollPercent(float percent) {
-                Mlog.e("onScrollPercent"+percent);
+                MLog.e("onScrollPercent"+percent);
                 if (percent<0.05){
                     GoWecalAddTskActivity.this.finish();
                 }

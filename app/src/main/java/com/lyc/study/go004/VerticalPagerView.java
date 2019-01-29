@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 
 /**
  * lyc
@@ -84,7 +84,7 @@ public class VerticalPagerView extends ViewGroup {
                     int childHeightMeasureSpec=MeasureSpec.makeMeasureSpec(parentHeight, MeasureSpec.EXACTLY);
                     child.measure(widthMeasureSpec, childHeightMeasureSpec);
                     pageHeight1 = child.getMeasuredHeight();
-                    Mlog.e("pageHeight1"+pageHeight1);
+                    MLog.e("pageHeight1"+pageHeight1);
                 }
                 else {
                     child.measure(widthMeasureSpec, heightMeasureSpec);
@@ -113,7 +113,7 @@ public class VerticalPagerView extends ViewGroup {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Mlog.e("onInterceptTouchEvent" + ev);
+        MLog.e("onInterceptTouchEvent" + ev);
 
         final int action = ev.getAction();
         if ((action == MotionEvent.ACTION_MOVE) && (mIsBeingDragged)) {
@@ -130,7 +130,7 @@ public class VerticalPagerView extends ViewGroup {
             case MotionEvent.ACTION_MOVE: {
                 final float y = ev.getY();
                 final int yDiff = (int) Math.abs(y - mLastMotionY);
-                Mlog.e("yDiff > mTouchSlop"+yDiff +">"+mTouchSlop);
+                MLog.e("yDiff > mTouchSlop"+yDiff +">"+mTouchSlop);
                 if (yDiff > mTouchSlop) {// 垂直移动距离达到滑动距离，进行手势拦截
                     mIsBeingDragged = true;
                     mLastMotionY = y;
@@ -150,7 +150,7 @@ public class VerticalPagerView extends ViewGroup {
     VelocityTracker mVelocityTracker;
 
     public boolean onTouchEvent(MotionEvent event) {
-        Mlog.e("onTouchEvent" + canScroll);
+        MLog.e("onTouchEvent" + canScroll);
         isInit=true;
 
         if(!canScroll){
@@ -164,7 +164,7 @@ public class VerticalPagerView extends ViewGroup {
         float y = event.getY();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                Mlog.e("onTouchEvent0" + event);
+                MLog.e("onTouchEvent0" + event);
 
                 isFingerTouch=true;
                 if (!mScroller.isFinished()) {
@@ -175,27 +175,27 @@ public class VerticalPagerView extends ViewGroup {
                 break;
 
             case MotionEvent.ACTION_MOVE:
-                Mlog.e("onTouchEvent1" + event);
+                MLog.e("onTouchEvent1" + event);
 
                 isFingerTouch=true;
                 final int deltaY = (int) (mLastMotionY - y);
                 mLastMotionY = y;
                 if (getScrollY() >= 0 && getScrollY() <= getAllScrollY()) {
-                    Mlog.e("onTouchEvent1--" + event);
+                    MLog.e("onTouchEvent1--" + event);
 
                     if (deltaY >= 0) {
-                        Mlog.e("onTouchEvent1-0" +"deltaY"+deltaY+"getAllScrollY() - getScrollY()"+(getAllScrollY() - getScrollY()));
+                        MLog.e("onTouchEvent1-0" +"deltaY"+deltaY+"getAllScrollY() - getScrollY()"+(getAllScrollY() - getScrollY()));
                         //手指向下拖动的时候处理滑动
                         scrollBy(0, Math.min(deltaY, (getAllScrollY() - getScrollY() > 0 ? getAllScrollY() - getScrollY() : 0)));
 
                     } else {
 
                         if(getScrollY()==0){
-                            Mlog.e("onTouchEvent1-?" + event);
+                            MLog.e("onTouchEvent1-?" + event);
 
                             return true;
                         }
-                        Mlog.e("onTouchEvent1-1" + event);
+                        MLog.e("onTouchEvent1-1" + event);
 
                         scrollBy(0, getScrollY() != 0 ? Math.max(deltaY, -getScrollY()) : deltaY);
                     }
@@ -205,7 +205,7 @@ public class VerticalPagerView extends ViewGroup {
                 break;
 
             case MotionEvent.ACTION_UP:
-                Mlog.e("onTouchEvent2" + event);
+                MLog.e("onTouchEvent2" + event);
 
                 isFingerTouch=false;
                 mVelocityTracker.computeCurrentVelocity(1000, ViewConfiguration.get(this.getContext()).getScaledMaximumFlingVelocity());
@@ -281,7 +281,7 @@ public class VerticalPagerView extends ViewGroup {
 
     //true表示手指朝上滑动
     private void slide(boolean isUp) {
-        Mlog.e("isUp:"+isUp+"mScroller.getCurrY():"+mScroller.getCurrY());
+        MLog.e("isUp:"+isUp+"mScroller.getCurrY():"+mScroller.getCurrY());
         if (isUp) {
             if (getScrollY() <pageHeight0) {
                 int _currentScrollY=getCurrentScrollLenght(getScrollY());
@@ -338,7 +338,7 @@ public class VerticalPagerView extends ViewGroup {
         }
         int deltaY=getScrollY()-y;
         mScroller.startScroll(0, getScrollY(), 0, -deltaY, (int) time_delay);
-        Mlog.e("deltaY" + deltaY);
+        MLog.e("deltaY" + deltaY);
         invalidate();
 
     }
@@ -375,7 +375,7 @@ public class VerticalPagerView extends ViewGroup {
     }
 
     public boolean isInnerCanScroll(){
-        Mlog.e("isInnerCanScroll"+getScrollY()+"*"+pageHeight0+"*"+pageHeight1);
+        MLog.e("isInnerCanScroll"+getScrollY()+"*"+pageHeight0+"*"+pageHeight1);
         return getScrollY()>=pageHeight0+pageHeight1;
     }
 

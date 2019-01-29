@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 import com.lyc.study.R;
 
 /**
@@ -22,6 +22,6 @@ public class GoHookActivity02 extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Mlog.e("ondestory");
+        MLog.e("ondestory");
     }
 }

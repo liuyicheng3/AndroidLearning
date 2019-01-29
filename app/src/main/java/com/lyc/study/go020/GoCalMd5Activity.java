@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 import com.lyc.common.UtilsManager;
 import com.lyc.study.R;
 
@@ -52,7 +52,7 @@ public class GoCalMd5Activity extends Activity implements View.OnClickListener {
         setContentView(R.layout.act_go_md5);
         mActivity = this;
         initViews();
-        Mlog.e(apkPath);
+        MLog.e(apkPath);
         tv_result_0.setText(calMd5_0());
         tv_result_1.setText(calMd5_1());
 
@@ -78,10 +78,10 @@ public class GoCalMd5Activity extends Activity implements View.OnClickListener {
         float width = textView.getPaint().measureText(textView.getText().toString());
         float containerSize = findViewById(R.id.fl_container).getMeasuredWidth();
         if (containerSize<=0){
-            Mlog.e("还没测出结果");
+            MLog.e("还没测出结果");
             return;
         }
-        Mlog.e("textWidth:"+width+" maxWidth:"+containerSize);
+        MLog.e("textWidth:"+width+" maxWidth:"+containerSize);
         if (width>containerSize){
             ObjectAnimator xAni = ObjectAnimator.ofFloat(textView,"x",0,containerSize-width);
             xAni.setDuration(2000);
@@ -238,7 +238,7 @@ public class GoCalMd5Activity extends Activity implements View.OnClickListener {
         if (file.exists()){
             long length = file.length();
             if (length > Integer.MAX_VALUE){
-                Mlog.e("file2byte2 文件太大");
+                MLog.e("file2byte2 文件太大");
                 return null;
             }
             try {
@@ -254,12 +254,12 @@ public class GoCalMd5Activity extends Activity implements View.OnClickListener {
                 is.close();
 
                 if (offset < bytes.length){
-                    Mlog.e("file2byte2 file is error");
+                    MLog.e("file2byte2 file is error");
                     return null;
                 }
 
             } catch (Exception e) {
-                Mlog.e("file2byte2 异常->"+e.toString());
+                MLog.e("file2byte2 异常->"+e.toString());
                 e.printStackTrace();
             }
 

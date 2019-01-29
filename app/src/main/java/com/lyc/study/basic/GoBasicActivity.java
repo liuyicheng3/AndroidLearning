@@ -13,7 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.Button;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 import com.lyc.study.R;
 
 /**
@@ -89,7 +89,7 @@ public class GoBasicActivity extends FragmentActivity implements View.OnClickLis
 		@Override
 		public void onServiceConnected(ComponentName name, IBinder service) {
 			ServiceA.ABinder aBinder = (ServiceA.ABinder) service;
-			Mlog.e(aBinder.toString());
+			MLog.e(aBinder.toString());
 		}
 
 		@Override

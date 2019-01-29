@@ -8,7 +8,7 @@ import android.os.IBinder;
 import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 
-import com.lyc.common.Mlog;
+import com.lyc.common.MLog;
 
 /**
  * Created by lyc on 17/12/3.
@@ -19,29 +19,29 @@ public class ServiceA extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        Mlog.e("onBind"+this);
+        MLog.e("onBind"+this);
         return aBinder;
     }
 
     @Override
     public void onRebind(Intent intent) {
-        Mlog.e("onRebind");
+        MLog.e("onRebind");
         super.onRebind(intent);
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
-        Mlog.e("onUnbind");
+        MLog.e("onUnbind");
         return super.onUnbind(intent);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Mlog.e("onStartCommand");
+        MLog.e("onStartCommand");
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Mlog.e("auto stop Service after 4000");
+                MLog.e("auto stop Service after 4000");
                 ServiceA.this.stopService(new Intent(ServiceA.this,ServiceA.class));
 
             }
@@ -56,20 +56,20 @@ public class ServiceA extends Service {
     @Override
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
-        Mlog.e("onStart"+this);
+        MLog.e("onStart"+this);
 
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Mlog.e("onCreate");
+        MLog.e("onCreate");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Mlog.e("onDestroy :"+this);
+        MLog.e("onDestroy :"+this);
     }
 
     class ABinder extends Binder{
