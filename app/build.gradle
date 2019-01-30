@@ -1,8 +1,11 @@
 apply plugin: 'com.android.application'
+//使用自定义pulgin
+apply plugin: 'hellow-a'
+apply plugin: 'hellow-b'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.3"
+    buildToolsVersion "27.0.3"
     useLibrary 'org.apache.http.legacy'
 
 
@@ -39,50 +42,60 @@ android {
 
 }
 
+ccjReleaseInfo {
+
+    versionName = "1.0"
+    versionCode = 1
+    versionInfo = "versionInfo>>ccjReleaseInfo"
+}
+
+println(project.ccjReleaseInfo.versionName)
+
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:support-v4:26.1.0'
-    compile 'com.android.support:design:26.1.0'
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.android.support:support-annotations:25.3.1'
-    compile 'com.github.ctiao:DanmakuFlameMaster:0.7.8'
-    compile 'com.github.ctiao:ndkbitmap-armv7a:0.7.8'
-    compile 'com.github.ctiao:ndkbitmap-armv5:0.7.8'
-    compile 'com.github.ctiao:ndkbitmap-x86:0.7.8'
-    compile 'com.android.support:recyclerview-v7:26.1.0'
-    compile 'com.liulishuo.filedownloader:library:1.6.4'
-    compile 'com.github.bumptech.glide:glide:4.0.0'
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api 'com.android.support:support-v4:26.1.0'
+    api 'com.android.support:design:26.1.0'
+    api 'com.android.support:appcompat-v7:26.1.0'
+    api 'com.android.support:support-annotations:25.3.1'
+    api 'com.github.ctiao:DanmakuFlameMaster:0.7.8'
+    api 'com.github.ctiao:ndkbitmap-armv7a:0.7.8'
+    api 'com.github.ctiao:ndkbitmap-armv5:0.7.8'
+    api 'com.github.ctiao:ndkbitmap-x86:0.7.8'
+    api 'com.android.support:recyclerview-v7:26.1.0'
+    api 'com.liulishuo.filedownloader:library:1.6.4'
+    api "com.github.bumptech.glide:glide:${project.ccjReleaseInfo.glideVersion}"
+//    api "com.github.bumptech.glide:glide:4.0.0"
     //Unit test
-    testCompile 'junit:junit:4.11'
-    testCompile "org.robolectric:shadows-multidex:3.0"
-    testCompile('org.robolectric:robolectric:3.0') {
+    testImplementation 'junit:junit:4.11'
+    testImplementation "org.robolectric:shadows-multidex:3.0"
+    testImplementation('org.robolectric:robolectric:3.0') {
         exclude module: 'commons-logging'
     }
     // required if you want to use Mockito for unit tests
-    testCompile 'org.mockito:mockito-core:1.9.5'
+    testApi 'org.mockito:mockito-core:1.9.5'
 
-    testCompile "org.powermock:powermock-module-junit4:1.6.4"
-    testCompile "org.powermock:powermock-module-junit4-rule:1.6.4"
-    testCompile "org.powermock:powermock-api-mockito:1.6.4"
-    testCompile "org.powermock:powermock-classloading-xstream:1.6.4"
+    testImplementation "org.powermock:powermock-module-junit4:1.6.4"
+    testImplementation "org.powermock:powermock-module-junit4-rule:1.6.4"
+    testImplementation "org.powermock:powermock-api-mockito:1.6.4"
+    testImplementation "org.powermock:powermock-classloading-xstream:1.6.4"
 
     //RX android
-    compile 'io.reactivex:rxandroid:1.1.0'
-    compile 'io.reactivex:rxjava:1.1.0'
+    api 'io.reactivex:rxandroid:1.1.0'
+    api 'io.reactivex:rxjava:1.1.0'
 
     // 网络
-    compile 'com.squareup.okhttp3:okhttp:3.8.1'
-    compile 'com.squareup.okhttp3:okhttp-urlconnection:3.8.1'
+    api 'com.squareup.okhttp3:okhttp:3.8.1'
+    api 'com.squareup.okhttp3:okhttp-urlconnection:3.8.1'
 
     //retrofit
-    compile 'com.squareup.retrofit2:retrofit:2.2.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.2.0'
+    api 'com.squareup.retrofit2:retrofit:2.2.0'
+    api 'com.squareup.retrofit2:converter-gson:2.2.0'
+    api 'com.squareup.retrofit2:adapter-rxjava:2.2.0'
 
-    compile 'com.jakewharton:butterknife:8.5.1'
+    api 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 
-    compile 'com.android.support.constraint:constraint-layout:1.1.3'
+    api 'com.android.support.constraint:constraint-layout:1.1.3'
 
 
 }
