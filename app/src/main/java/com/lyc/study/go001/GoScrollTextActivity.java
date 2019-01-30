@@ -8,9 +8,11 @@ import android.widget.ScrollView;
 
 import com.lyc.study.R;
 
+import wz.com.annotationlib.MyClass;
+
+@MyClass.Test(path ="main")
 public class GoScrollTextActivity extends Activity {
     ScrollView scrollView1;
-
     InnerScrollView innerScrollView;
 
     @Override

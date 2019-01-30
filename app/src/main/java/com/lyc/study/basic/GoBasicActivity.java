@@ -16,10 +16,12 @@ import android.widget.Button;
 import com.lyc.common.MLog;
 import com.lyc.study.R;
 
+import wz.com.annotationlib.MyClass;
+
 /**
  * Created by lyc on 17/12/3.
  */
-
+@MyClass.Test(path = "main")
 public class GoBasicActivity extends FragmentActivity implements View.OnClickListener {
 
 

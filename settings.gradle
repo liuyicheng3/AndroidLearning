@@ -1,1 +1,1 @@
-include ':app', ':pluginA',':pluginB'
+include ':app', ':pluginA',':pluginB', ':TestCompiler', ':annotationlib'

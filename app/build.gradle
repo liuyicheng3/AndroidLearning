@@ -97,5 +97,6 @@ dependencies {
 
     api 'com.android.support.constraint:constraint-layout:1.1.3'
 
-
+    compile project(':annotationlib')
+    annotationProcessor project(':TestCompiler')
 }
