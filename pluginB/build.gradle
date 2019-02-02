@@ -9,7 +9,7 @@ uploadArchives{
             repository(url:"file:///Users/liuyc/.m2/repository")
             pom.groupId = "wz.com.pluginb"
             pom.artifactId = "lyc-b"
-            pom.version = "1.0"
+            pom.version = "0.3"
             pom.packaging = "aar"
         }
     }

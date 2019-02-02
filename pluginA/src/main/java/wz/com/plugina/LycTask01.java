@@ -2,6 +2,7 @@ package wz.com.plugina;
 import org.gradle.api.Action;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.Task;
+import org.gradle.api.plugins.ExtensionContainer;
 import org.gradle.api.tasks.TaskAction;
 
 import java.lang.reflect.Field;
@@ -23,6 +24,11 @@ public class LycTask01 extends DefaultTask {
     }
 
     private void listversion(){
+
+        ExtensionContainer ex = getProject().getExtensions();
+        Object dependencies_ext = ex.getByName("dependencies");
+        System.out.println(dependencies_ext);
+
         ReleaseInfoExtension custom_ext = (ReleaseInfoExtension) getProject().getExtensions().getByName
                 ("ccjReleaseInfo");
         Field[] all = ReleaseInfoExtension.class.getDeclaredFields();

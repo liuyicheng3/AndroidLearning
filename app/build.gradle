@@ -48,6 +48,10 @@ ccjReleaseInfo {
     versionCode = 1
     versionInfo = "versionInfo>>ccjReleaseInfo"
 }
+DependenceChecker {
+    variant = 'release'
+    abortBuild = false
+}
 
 println(project.ccjReleaseInfo.versionName)
 
